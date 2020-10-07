@@ -1,2 +1,38 @@
 Should we cascade deletes on our reference from Profiles to Django Users?
 Should we have a field on Posts for their authors?
+
+
+
+User Stories:
+Wireframe for public profile page?
+Edit wireframe for profile?
+Wireframe for contributed posts list?
+Wireframe for show page for individual posts?
+Will you supply the default profile image?
+(focus on parks, primarily green, focus on natural elements)
+
+Wireframe 1:
+Vision?
+Target Audience?  Park enthusiasts
+Aesthetic?What goes in the Logo Box?
+What goes in the background box (image, block color, gradient)?
+Font?When are you going to supply text for the Lorem Ipsum? Primary focus readability, sans-serif
+What do the arrows represent on the background box? (carousel?)
+What kind of submit do you want on the sign in/up form? Add buttons
+Can the user return to the home page once signed in?
+What does the navbar show if logged in?
+What happens if I click the profile button?Wireframe 2:
+Are there edit and delete functionalities on posts and cities?
+What is the text box in the top right for?
+Are you going to supply the images for each city?
+Are the cities user generated or admin generated? Admin, test for now using 5-10
+What goes in the city image box on the right?
+What goes in the post image box?
+What is the sorting order for cities and posts for each city? Posts by date (newest first)
+If there are too many cities to display on page, what is the overflow behavior? scroll
+Same for posts? yes
+Are there any navbar elements in this view? No
+Can I click on posts? Yes
+Can I click on the Wayfarer Logo? Links back to the cities index, if not logged in links back to the splash page
+
+Seperate log in and sign up modal forms
