@@ -26,6 +26,12 @@ def post_index(request):
     context = {'posts':posts, 'post_form': post_form}
     return render(request, 'posts/index.html', context)
 
+# Show Post View 
+
+def post_details(request, post_id):
+    post = Post.objects.get(id=post_id)
+    return render(request, 'posts/detail.html', {'post': post}) 
+
 # Create your views here.
 
 def signup(request):
