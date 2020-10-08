@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -22,7 +22,8 @@ def signup(request):
             user = form.save()
             login(request, user)
             return redirect('cities_index')
-        error_message +='\nInvalid sign up - try again'
+        else:
+            error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
     context = {
         'form': form,
@@ -32,3 +33,5 @@ def signup(request):
 
 
 
+def profile_details(request):
+    return HttpResponse('<h3>profile<h3>')
