@@ -32,6 +32,24 @@ def post_details(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, 'posts/detail.html', {'post': post}) 
 
+# Post Delete
+def post_delete(request, post_id):
+    post = Post.objects.get(id=post_id).delete()
+    return redirect('post_index')
+
+# Post Edit
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST, instance = post)
+        if post_form.is_valid(): 
+            post_form.save()
+            return redirect('detail', post_id = post_id)
+    else:
+        post_form = Post_Form(instance = post)
+        context = {'post':post, 'post_form':post_form}
+        return render(request, 'posts/edit.html', context)
+
 # Create your views here.
 
 def signup(request):

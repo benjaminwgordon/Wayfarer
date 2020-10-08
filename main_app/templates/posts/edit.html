@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% block nav %}
+
+<div  class="ui container">
+    <form action="{% url 'edit' %}" method="POST">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <input type="submit" class="ui button" value="Update Post" />
+    </form>
+    </div>
+{% endblock %}
