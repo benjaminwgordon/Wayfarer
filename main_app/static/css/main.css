@@ -3,21 +3,26 @@
 }
 
 
-#city {
-    color: antiquewhite;
-    background-color:#2e6e65;
+#login{
+
+color:#2e6e65;
+margin: .5em;
+}
+
+
+
+
+#way_con{
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: medium;
+    color: #2e6e65;
+}
+
+#way_icon{
+    font-size: 3em;
 }
 
 #login{
-    color: antiquewhite;
-    background-color:#2e6e65;
-   margin: .5em;
+    
 }
-
-
-#register{
-    color: antiquewhite;
-    background-color:#2e6e65;
-}
-
-
