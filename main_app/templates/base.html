@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfarer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+    <!-- jQuery 1.8 or later, 33 KB -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+    <!-- Fotorama from CDNJS, 19 KB -->
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 </head>
 <body>
 
-    <li><a href="{% url 'home' %}" class="left brand-logo">Wayfarer</a></li>
+<nav id="nav">
+    <div  class="ui container">
+        <div  class="ui large secondary pointing menu">
+          <a class="toc item">
+         
+          </a><i class="angle double up icon"></i>
+          <a href="{% url 'home' %}" class="left brand-logo">Wayfarer</a>
+          <div class="right item">
 
 
+<!-- For login and registration -->
+
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'profile'%}"> Welcome, {{ user.username }}</a></li>
+<li><a href="{% url 'logout' %}">Log Out</a></li>
+{% else %}
+            <a href="{% url 'login' %}" id="login" class="ui button">Log in</a>
+            <a href="{% url 'signup' %}" id="register"class="ui button">Register</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% block nav %}
+      {% endblock %}
+</nav>
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
