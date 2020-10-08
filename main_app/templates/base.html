@@ -32,7 +32,6 @@
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
-    <li><a href="{% url 'profile'%}"> Welcome, {{ user.username }}</a></li>
 <li><a href="{% url 'logout' %}">Log Out</a></li>
 {% else %}
             <a href="{% url 'login' %}" id="login" class="ui button">Log in</a>
