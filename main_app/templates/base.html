@@ -32,6 +32,7 @@
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
+    {% comment %} <li><a href="{% url 'profile_detail'  %}"> Welcome, {{ user.username }}</a></li> {% endcomment %}
 <li><a href="{% url 'logout' %}">Log Out</a></li>
 {% else %}
             <a href="{% url 'login' %}" id="login" class="ui button">Log in</a>
