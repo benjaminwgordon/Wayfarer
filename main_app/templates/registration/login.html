@@ -1,11 +1,24 @@
 {% extends 'base.html'%}
 {%block nav%} 
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="login">
-  <input type="hidden" name="next" value="{{ next }}">
-</form>
+
+<div class="middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <img src="static/images/logo.png" alt="wayfarer logo" class="image">
+            <div class="content">
+                Log in to your Wayfarer Account
+            </div>
+        </h2>
+        <form method="post" action="{% url 'login' %}" class="ui large form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" class="btn" value="login">
+          <input type="hidden" name="next" value="{{ next }}">
+      </form>
+    </div>
+</div>
+
+
 
 {% endblock %} 

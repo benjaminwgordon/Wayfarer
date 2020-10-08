@@ -23,16 +23,16 @@
     <div  class="ui container">
         <div  class="ui large secondary pointing menu">
           <a class="toc item">
-            <i class="angle double up icon"></i>
-            <a href="{% url 'home' %}" class="left brand-logo">Wayfarer</a>
-          </a>
+         
+          </a><i class="angle double up icon"></i>
+          <a href="{% url 'home' %}" class="left brand-logo">Wayfarer</a>
           <div class="right item">
 
 
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
-    {% comment %} <li><a href="{% url 'profile_detail'  %}"> Welcome, {{ user.username }}</a></li> {% endcomment %}
+    {% comment %} <li><a href="{% url 'profile'%}"> Welcome, {{ user.username }}</a></li> {% endcomment %}
 <li><a href="{% url 'logout' %}">Log Out</a></li>
 {% else %}
             <a href="{% url 'login' %}" id="login" class="ui button">Log in</a>
