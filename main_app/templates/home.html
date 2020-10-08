@@ -52,6 +52,18 @@
               </a><i class="angle double up icon"></i>
               <a href="{% url 'home' %}" class="left brand-logo">Wayfarer</a>
               <div class="right item">
+
+                
+<!-- For login and registration -->
+ <!--    <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'profile'%}"> Welcome, {{ user.username }}</a></li>
+<li><a href="{% url 'logout' %}">Log Out</a></li>
+{% else %}
+<li> <a href="{% url 'register' %}"> Register</a></li>
+<li><a href="{% url 'login' %}"></a>Log In</li>
+{% endif %}
+    </ul> -->
                 <a id="login" class="ui button">Log in</a>
                 <a id="register"class="ui button">Register</a>
               </div>
