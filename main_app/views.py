@@ -42,7 +42,8 @@ def signup(request):
             user = form.save()
             login(request, user)
             return redirect('cities_index')
-        error_message +='\nInvalid sign up - try again'
+        else:
+            error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
     context = {
         'form': form,
@@ -52,3 +53,5 @@ def signup(request):
 
 
 
+def profile_details(request):
+    return HttpResponse('<h3>profile<h3>')
