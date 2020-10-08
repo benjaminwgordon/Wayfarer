@@ -1,3 +1,8 @@
+* {
+    max-width: 800px;
+}
+
+
 #city {
     color: antiquewhite;
     background-color:#2e6e65;
@@ -13,4 +18,8 @@
 #register{
     color: antiquewhite;
     background-color:#2e6e65;
+}
+
+#nav{
+    color: #2e6e65;
 }
