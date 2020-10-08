@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block nav %}
+
+<div  class="ui container">
+    <form action="{% url 'post_index' %}" method="POST">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <input type="submit" class="ui button" value="Add Post" />
+       <div class="ui card">
+      <a href="{% url 'edit' post.id %}" class="ui button">Edit</a>
+      <a class="ui button" href="{% url 'delete' post.id %}"> Delete </a>
+    </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+
