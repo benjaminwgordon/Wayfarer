@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-<<<<<<< HEAD
-=======
 from .models import Profile, City, Post
 
 # Create your views here
@@ -13,7 +11,19 @@ from .models import Profile, City, Post
 
 def home(request):
     return render(request, 'home.html')
->>>>>>> dev
+
+# Index & Create View 
+
+def post_index(request):
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST)
+        if post_form.is_valid():
+            post_form.save()
+            return redirect ('post_index')
+    posts = Post.objects.all()
+    post_form = Post_Form()
+    context = {'posts':posts, 'post_form':post_form}
+        return render(request, 'posts/index.html', context)
 
 # Create your views here.
 
@@ -35,9 +45,3 @@ def signup(request):
 
 
 
-<<<<<<< HEAD
-def home(request):
-    return HttpResponse('hello world')
-
-=======
->>>>>>> dev

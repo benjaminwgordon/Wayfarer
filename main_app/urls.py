@@ -1,22 +1,14 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
 from django.urls import path, include
 from . import views
 
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('accounts/signup/', views.signup, name='signup')
-<<<<<<< HEAD
-<<<<<<< HEAD
+    path('accounts/signup/', views.signup, name='signup'),
+    path('post/', views.post_index, name='post_index'),
+
+    # path('cats/', views.cats_index, name='cats_index'),
+
+
 ]
 
-=======
->>>>>>> 148c43c5ea1a22f87084893695bf1fab4674ffd0
-]
->>>>>>> 9a86ff242276efea7fa75f039abd53daab6fa7d0
-=======
-]
->>>>>>> dev
