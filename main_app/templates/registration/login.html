@@ -1,0 +1,11 @@
+{% comment %} {% extends 'base.html'%} {% endcomment %}
+{% comment %} {%block content%} {% endcomment %}
+
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" class="btn" value="login">
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{% comment %} {% endblock %} {% endcomment %}
