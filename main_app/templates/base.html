@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfarer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
     <!-- jQuery 1.8 or later, 33 KB -->
@@ -22,10 +21,14 @@
 <nav id="nav">
     <div  class="ui container">
         <div  class="ui large secondary pointing menu">
-          <a class="toc item">
-         
-          </a><i class="angle double up icon"></i>
-          <a href="{% url 'home' %}" class="left brand-logo">Wayfarer</a>
+          <!-- a class="toc item"> -->
+
+            <a id="way_con" href="{% url 'home' %}">Wayfarer
+                <i id="way_icon" class="angle double up icon"></i>
+            </a>
+        
+        
+
           <div class="right item">
 
 
@@ -35,8 +38,10 @@
     {% comment %} <li><a href="{% url 'profile'%}"> Welcome, {{ user.username }}</a></li> {% endcomment %}
 <li><a href="{% url 'logout' %}">Log Out</a></li>
 {% else %}
-            <a href="{% url 'login' %}" id="login" class="ui button">Log in</a>
-            <a href="{% url 'signup' %}" id="register"class="ui button">Register</a>
+
+            <a href="{% url 'login' %}" id="login" class="ui grey basic button">Log in</a>
+            <a href="{% url 'signup' %}" id="register"class="ui grey basic button">Register</a>
+    
             {% endif %}
           </div>
         </div>
