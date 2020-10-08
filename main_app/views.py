@@ -2,6 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile, City, Post
+
+# Create your views here
+
+
+#  Home view
+
+def home(request):
+    return render(request, 'home.html')
 
 # Create your views here.
 
@@ -21,5 +30,5 @@ def signup(request):
     }
     return render(request, 'registration/signup.html', context)
 
-def home(request):
-    return HttpResponse('hello world')
+
+

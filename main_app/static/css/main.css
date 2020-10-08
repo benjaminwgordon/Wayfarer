@@ -1,3 +1,8 @@
+* {
+    max-width: 800px;
+}
+
+
 #city {
     color: antiquewhite;
     background-color:#2e6e65;
@@ -14,3 +19,5 @@
     color: antiquewhite;
     background-color:#2e6e65;
 }
+
+
