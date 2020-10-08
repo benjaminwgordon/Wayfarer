@@ -1,19 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-<<<<<<< HEAD
-from .models import Profile, City, Post
-
-# Create your views here
-
-
-#  Home view
-
-def home(request):
-    return render(request, 'home.html')
-=======
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-
+from .models import City, Profile, Post
 # Create your views here.
 
 def signup(request):
@@ -35,6 +24,12 @@ def signup(request):
 
 
 def home(request):
-    return HttpResponse('hello world')
+    return render(request, 'home.html')
 
->>>>>>> 148c43c5ea1a22f87084893695bf1fab4674ffd0
+def cities_index(request):
+    #handle index all cities
+    cities = City.objects.all()
+    context = {
+        'cities': cities
+    }
+    return render(request, 'cities/index.html', context)

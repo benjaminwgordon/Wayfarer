@@ -1,5 +1,5 @@
-{% comment %} {% extends 'base.html'%} {% endcomment %}
-{% comment %} {%block content%} {% endcomment %}
+{% extends 'base.html'%}
+{%block content%}
 
 <form method="post" action="{% url 'login' %}">
   {% csrf_token %}
@@ -7,4 +7,4 @@
   <input type="submit" class="btn" value="login">
 </form>
 
-{% comment %} {% endblock %} {% endcomment %}
+{% endblock %}
