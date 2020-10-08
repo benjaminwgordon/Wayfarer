@@ -5,13 +5,16 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    current_city = models.CharField(max_length=100)
+    name = models.CharField(max_length=50, default='anonymous')
+    current_city = models.CharField(max_length=100, default='N/A')
     join_date = models.DateField(auto_now_add=True)
-
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def create(cls, user):
+        return cls(user=user)
 
 class City(models.Model):
     image = models.URLField(max_length=200)
