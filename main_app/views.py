@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
+from .forms import Post_Form
 
 # Create your views here
 
@@ -19,11 +20,11 @@ def post_index(request):
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
             post_form.save()
-            return redirect ('post_index')
+            return redirect('post_index')
     posts = Post.objects.all()
     post_form = Post_Form()
-    context = {'posts':posts, 'post_form':post_form}
-        return render(request, 'posts/index.html', context)
+    context = {'posts':posts, 'post_form': post_form}
+    return render(request, 'posts/index.html', context)
 
 # Create your views here.
 
