@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -34,52 +35,24 @@
         </div>
       </div>
        -->
-
+       {% block nav %}
       <!-- Page Contents -->
       <body>
-
-  
-
       <div class="pusher">
         <div class="ui inverted vertical masthead center aligned segment fotorama"" >
             <img src="https://s.fotorama.io/1.jpg">
             <img src="https://s.fotorama.io/2.jpg">
             </div>
-          <div class="ui container">
-            <div class="ui large secondary inverted pointing menu">
-              <a class="toc item">
-             
-              </a><i class="angle double up icon"></i>
-              <a href="{% url 'home' %}" class="left brand-logo">Wayfarer</a>
-              <div class="right item">
-
-
-<!-- For login and registration -->
-  <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'profile'%}"> Welcome, {{ user.username }}</a></li>
-<li><a href="{% url 'logout' %}">Log Out</a></li>
-{% else %}
-<li> <a href="{% url 'signup' %}"> Register</a></li>
-<li><a href="{% url 'login' %}"></a>Log In</li>
-{% endif %}
-    </ul> 
-
-
-                <a id="login" class="ui button">Log in</a>
-                <a id="register"class="ui button">Register</a>
-              </div>
-            </div>
-          </div>
+           
       <!-- Add images to <div class="fotorama"></div> -->
           <div class="ui text container" >
-          
-            
+       
             <div id="city" class="ui huge button"> Add a City</div>
           </div>
       
         </div>
-  
+
+
         <div class="ui vertical stripe segment"></div>
           <div class="ui middle aligned stackable grid container">
             <div class="row">
@@ -105,3 +78,4 @@
 
     </body>
     </html>
+    {% endblock %}
