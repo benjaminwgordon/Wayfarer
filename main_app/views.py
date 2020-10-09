@@ -78,9 +78,11 @@ def signup(request):
 
 def profile_details(request):
     # handle profile show
-    print("profile: ", request.user.profile)
+    posts = Post.objects.filter(author=request.user.profile)
+    print("posts: ", posts)
     context = {
-        'profile': request.user.profile
+        'profile': request.user.profile,
+        'posts': posts
     }
     return render(request, 'registration/profile.html', context)
 

@@ -8,5 +8,19 @@
     <a href="{% url 'profile_edit' %}">Edit</a>
     <a href="{% url 'profile_delete' %}">Delete</a>
 </div>
+<div>
+    {% if posts %}
+        <ul>
+        {% for post in posts %}
+            <li>
+                <h4>{{post.title}}</h4>
+                <p>{{post.body}}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>This user has not authored any posts</p>
+    {% endif%}
+</div>
 
 {% endblock %}
