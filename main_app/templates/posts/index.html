@@ -16,7 +16,7 @@
         <h1>POSTS</h1>
         {% for post in posts %}
             <div class="four wide column">
-                <p>{{ post.body }} </p>
+                <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> </p>
           </div>
           {% endfor %} 
         
