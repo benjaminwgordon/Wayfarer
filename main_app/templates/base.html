@@ -31,7 +31,7 @@
 
           <div class="right item">
 
-
+            <a id="all_icon" class="ui grey basic button" href="{% url 'post_index' %}">All Posts</a>
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
@@ -41,8 +41,8 @@
 
 
           <!-- Modals-->
-            <input type="button" value="Log In" onclick="login_form()" class="ui grey basic button">
-            <input type="button" value="Register" onclick="register_form()" class="ui grey basic button">
+            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui grey basic button">
+            <input id="logout_icon" type="button" value="Register" onclick="register_form()" class="ui grey basic button">
           <!-- End Modals-->
     
             {% endif %}
@@ -65,7 +65,7 @@
     Log in
   </div>
   <div class="content">
-      <form method="post" action="{% url 'login' %}" class="ui large form">
+      <form method="post" action="{% url 'login' %}" class="ui form">
         {% csrf_token %}
         {{ login_form.as_p }}
         <input type="submit" class="btn" value="login">
