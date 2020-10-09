@@ -7,11 +7,38 @@
         <p>{{post.body}}</p>
         <p>{{post.author}}</p>
         <a href="{% url 'post_edit' post.id %}" class="ui button">Edit</a>
-        <a class="ui button" href="{% url 'post_delete' post.id %}"> Delete </a>
+    
+        <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
+      
     </div>
     </form>
 </div>
 
+<div id="delete_modal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Delete
+    </div>
+    <div class="content">
+        Are you sure you want to delete this?
+        
+    </div>
+    <div class="actions">
+      <div class="ui button">
+        <a href="{% url 'post_detail' post.id %}">Cancel</a>
+      </div>
+      <div class="ui button">
+          <a href="{% url 'post_delete' post.id %}">Yes</a>
+      </div>
+    </div>
+  </div>
 
+  <script>
+    function delete_modal(){
+      $('#delete_modal').modal('show');
+    }
+  
+  
+  </script>
 {% endblock %}
 
