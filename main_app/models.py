@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.template.defaultfilters import slugify
+
 
 # Create your models here.
 
@@ -12,7 +12,8 @@ class Profile(models.Model):
     current_city = models.CharField(max_length=100, default='N/A')
     join_date = models.DateField(auto_now_add=True)
 
- 
+    def __str__(self):
+        return self.name
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -39,7 +40,7 @@ class Post(models.Model):
     body = models.TextField(max_length=1500)
     
     def __str__(self):
-        return str(self.author) + ' ' + self.title
+        return str(self.author) + self.title
 
 # sorts table newesst first
     class Meta:
