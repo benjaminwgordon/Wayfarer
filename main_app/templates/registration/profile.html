@@ -5,8 +5,22 @@
     <p>name: {{profile.name}}</p>
     <p>current city: {{profile.current_city}}</p>
     <p>Member since: {{profile.join_date}}</p>
-    <a href="{{ url 'profile_edit' profile.id}}"></a>
-    <a href="{{ url 'profile_delete' profile.id}}"></a>
+    <a href="{% url 'profile_edit' %}">Edit</a>
+    <a href="{% url 'profile_delete' %}">Delete</a>
+</div>
+<div>
+    {% if posts %}
+        <ul>
+        {% for post in posts %}
+            <li>
+                <h4>{{post.title}}</h4>
+                <p>{{post.body}}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>This user has not authored any posts</p>
+    {% endif%}
 </div>
 
 {% endblock %}
