@@ -15,8 +15,10 @@
         <h1>POSTS</h1>
         {% for post in posts %}
             
-                <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></p>
-          
+                <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                {{ post.author }}
+                {{ post.body }}
+            </p>
           {% endfor %} 
         </div>
     </div>
