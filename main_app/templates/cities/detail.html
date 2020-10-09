@@ -4,22 +4,31 @@
 {% block content %}
 
 
+<div class="ui two column divided grid">
+    <div class="four column row">
+      <div id="all_cities" class="column"> <h1>{{city.name}}</h1>
+        <p><a href="{% url 'city_detail' city.id %}">
+            <img class="rounded ui image" src="{{ city.image }}">
+        </a> 
+        </p> </div>
+      <div id="all_posts" class=" centered column">  <!-- POSTS -->
+        <h1>POSTS</h1>
+        {% for post in posts %}
+            
+                <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></p>
+          
+          {% endfor %} 
+        </div>
+    </div>
+  </div>
+ 
+  
 
 
 
 
-<h1>{{city.name}}</h1>
-<p><a href="{% url 'city_detail' city.id %}">
-    <img class="rounded ui image" src="{{ city.image }}">
-</a> 
-</p>
 
 
-<form class="ui form" action="{% url 'post_index' %}" method="POST" >
-    {% csrf_token %}
-    {{ post_form.as_p }}
-    <input type="submit" class="ui button" value="Add Post" /> 
-    </form>
 
 
 {% endblock%}
