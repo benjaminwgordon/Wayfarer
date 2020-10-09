@@ -122,6 +122,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/cities/'
+LOGIN_REDIRECT_URL = '/accounts/'
 
 LOGOUT_REDIRECT_URL = '/'
