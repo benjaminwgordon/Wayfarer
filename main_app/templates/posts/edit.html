@@ -2,7 +2,7 @@
 {% block content %}
 
 <div  class="ui container">
-    <form action="{% url 'post_edit' post.id%}" method="POST">
+    <form action="{% url 'post_edit' city.id post.id%}" method="POST">
         {% csrf_token %}
         {{ post_form.as_p }}
         <input type="submit" class="ui button" value="Update Post" />
