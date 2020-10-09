@@ -5,13 +5,20 @@
 <div class="ui stackable three wide column grid">
   
       <div class="column">
-          <h1>Cities</h1>
-        <img class="ui image" src="https://zgwcaw.dm.files.1drv.com/y4m-WNu3K9s9QaRoTY5A72lbQ7P1N2tldKnOy7Jsw19-ahvz5tKzJthyfHDUswqlWvLJpTWy91-8eiwYHHGF-iy9d8yQh0UG0XnS58zLOQ3Y5xQB3CKUQJBniB90aHFwZDvDX7zPP2a5twWL-CHvpT5x35oXIEnwVSElLtiGN2gJJb4kfojOT69sY4Mqotj8rHmz6UModzgZkpbzbnk_y1QIg?width=256&height=171&cropmode=none">
-      <br>
-        <img class="ui image" src="https://zgwcaw.dm.files.1drv.com/y4m-WNu3K9s9QaRoTY5A72lbQ7P1N2tldKnOy7Jsw19-ahvz5tKzJthyfHDUswqlWvLJpTWy91-8eiwYHHGF-iy9d8yQh0UG0XnS58zLOQ3Y5xQB3CKUQJBniB90aHFwZDvDX7zPP2a5twWL-CHvpT5x35oXIEnwVSElLtiGN2gJJb4kfojOT69sY4Mqotj8rHmz6UModzgZkpbzbnk_y1QIg?width=256&height=171&cropmode=none">
-     <br>
-      
-        <img class="ui image" src="https://zgwcaw.dm.files.1drv.com/y4m-WNu3K9s9QaRoTY5A72lbQ7P1N2tldKnOy7Jsw19-ahvz5tKzJthyfHDUswqlWvLJpTWy91-8eiwYHHGF-iy9d8yQh0UG0XnS58zLOQ3Y5xQB3CKUQJBniB90aHFwZDvDX7zPP2a5twWL-CHvpT5x35oXIEnwVSElLtiGN2gJJb4kfojOT69sY4Mqotj8rHmz6UModzgZkpbzbnk_y1QIg?width=256&height=171&cropmode=none">
+         
+        <div class="row">
+            <h1>CITIES</h1>
+            {% for city in city %}
+                <div class="four wide column">
+                    <p><a href="{% url 'city_detail' city.id %}">
+                        <img class="ui image" src="{{ city.image }}">
+                    </a> 
+                </p>
+                 
+              </div>
+              {% endfor %} 
+            
+        </div>
         <div class="row">
         <h1>POSTS</h1>
         {% for post in posts %}
@@ -21,6 +28,8 @@
           {% endfor %} 
         
     </div>
+    
+  
     
  </div>
 
