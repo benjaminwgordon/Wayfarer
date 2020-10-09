@@ -8,11 +8,10 @@ urlpatterns = [
     path('accounts/', views.profile_details, name='profile'),
     path('accounts/delete', views.profile_delete, name='profile_delete'),
     path('accounts/edit', views.profile_edit, name='profile_edit'),
-    path('post/', views.post_index, name='post_index'),
-    path('post/<int:post_id>/', views.post_details, name='post_detail'),
-    path('post/<int:post_id>/delete', views.post_delete, name='post_delete'),
-    path('post/<int:post_id>/edit', views.post_edit, name='post_edit'),
-    
+    path('city/<int:city_id>/post/', views.post_create, name='post_create'),
+    path('city/<int:city_id>/post/<int:post_id>/', views.post_detail, name='post_detail'),
+    path('city/<int:city_id>/post/<int:post_id>/delete', views.post_delete, name='post_delete'),
+    path('city/<int:city_id>/post/<int:post_id>/edit', views.post_edit, name='post_edit'),
     path('city/<int:city_id>/', views.city_detail, name="city_detail")
-   
+  
 ]

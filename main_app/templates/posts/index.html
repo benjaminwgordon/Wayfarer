@@ -26,42 +26,4 @@
             </div>
           </div>
          
-          
-          
-    
- 
-
-
-<input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button">
-
-<div id="add_post" class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Add Post
-  </div>
-  <div class="content">
-    <form action="{% url 'post_index' %}" method="POST">
-        {% csrf_token %}
-        {{ post_form.as_p }}
-        <input type="submit" class="ui rounded grey button" value="Add Post" />
-    </form>
-  </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
-</div>
-
-
-
-<script>
-  
-  function add_post(){
-    $('#add_post').modal('show');
-  }
-
-</script>
- 
-
-
 {% endblock%}
