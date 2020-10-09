@@ -8,9 +8,11 @@
     <form action="{% url 'post_index' %}" method="POST">
         {% csrf_token %}
         {{ post_form.as_p }}
-        <input type="submit" class="ui tiny rounded orange button" value="Add Post" />
+        <input type="submit" class="ui rounded grey button" value="Add Post" />
     </form>
-    </div>
+</div>
+
+
 {% endblock %}
 
 
