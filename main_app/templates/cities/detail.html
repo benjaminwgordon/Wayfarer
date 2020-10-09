@@ -6,16 +6,28 @@
 
 <div class="ui two column divided grid">
     <div class="four column row">
-      <div id="all_cities" class="column"> <h1>{{city.name}}</h1>
-        <p><a href="{% url 'city_detail' city.id %}">
-            <img class="rounded ui image" src="{{ city.image }}">
-        </a> 
-        </p> </div>
+      <div id="all_cities" class="column"> 
+            {% for city in cities %}
+              <h1>{{city.name}}</h1>
+              {% if city == currentCity %}
+                <p class="orange"><a href="{% url 'city_detail' city.id %}">
+                      <img class="rounded ui image" src="{{ city.image }}">
+                </a></p>
+              {% else %}
+                <p class="orange"><a href="{% url 'city_detail' city.id %}">
+                      <img class="rounded ui image" src="{{ city.image }}">
+                </a></p>
+              {% endif %}
+          {% endfor %} 
+          </div>
+      </div>
       <div id="all_posts" class=" centered column">  <!-- POSTS -->
         <h1>POSTS</h1>
+        <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button">
+
         {% for post in posts %}
             
-                <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                <p><a href="{% url 'post_detail' currentCity.id post.id %}">{{ post.title }}</a>
                 {{ post.author }}
                 {{ post.body }}
             </p>
@@ -24,7 +36,33 @@
     </div>
   </div>
  
+  <div id="add_post" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Add Post
+  </div>
+  <div class="content">
+    <form action="{% url 'post_create' currentCity.id %}" method="POST">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <input type="submit" class="ui rounded grey button" value="Add Post" />
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
+</div>
+
+
+
+<script>
   
+  function add_post(){
+    $('#add_post').modal('show');
+  }
+
+</script>
 
 
 

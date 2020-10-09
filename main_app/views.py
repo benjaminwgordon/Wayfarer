@@ -15,9 +15,15 @@ from django.contrib.auth.models import User
 # City show view
 
 def city_detail(request, city_id):
+    cities = City.objects.all()
     city = City.objects.get(id=city_id)
-    post_form = Post_Form()
-    context={'city':city,'post_form': post_form }
+    posts = Post.objects.filter(city=city_id)
+    context={
+        'currentCity':city,
+        'cities': cities,
+        'posts': posts,
+        'post_form': Post_Form()
+        }
     return render(request, 'cities/detail.html', context)
 
 #  Home view
@@ -29,42 +35,47 @@ def home(request):
 
 # Index & Create View 
 
-def post_index(request):
+def post_create(request, city_id):
     if request.method == 'POST':
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
             post_form.save()
-            return redirect('post_index')
-    posts = Post.objects.all()
-    city = City.objects.all()
-    post_form = Post_Form()
-    context = {'posts':posts, 'post_form': post_form, 'city':city}
-    return render(request, 'posts/index.html', context)
+            return redirect('city_detail', city_id=city_id)
 
 # Show Post View 
 
-def post_details(request, post_id):
+def post_detail(request, city_id, post_id):
+    city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
-    return render(request, 'posts/detail.html', {'post': post}) 
+    context = {
+        'city': city,
+        'post': post
+    }
+    return render(request, 'posts/detail.html', context) 
 
 
 
 # Post Delete
-def post_delete(request, post_id):
+def post_delete(request, city_id, post_id):
     post = Post.objects.get(id=post_id).delete()
-    return redirect('post_index')
+    return redirect('city_detail', city_id=city_id)
 
 # Post Edit
-def post_edit(request, post_id):
+def post_edit(request, city_id, post_id):
+    city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
     if request.method == 'POST':
         post_form = Post_Form(request.POST, instance = post)
         if post_form.is_valid(): 
             post_form.save()
-            return redirect('post_detail', post_id = post_id)
+            return redirect('post_detail', post_id = post_id, city_id = city_id)
     else:
         post_form = Post_Form(instance = post)
-        context = {'post':post, 'post_form':post_form}
+        context = {
+            'post':post, 
+            'post_form':post_form,
+            'city': city
+        }
         return render(request, 'posts/edit.html', context)
 
 # Create your views here.

@@ -6,7 +6,7 @@
         <h3>{{post.title}}</h3>
         <p>{{post.body}}</p>
         <p>{{post.author}}</p>
-        <a href="{% url 'post_edit' post.id %}" class="ui button">Edit</a>
+        <a href="{% url 'post_edit' city.id post.id %}" class="ui button">Edit</a>
     
         <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
       
@@ -25,10 +25,10 @@
     </div>
     <div class="actions">
       <div class="ui button">
-        <a href="{% url 'post_detail' post.id %}">Cancel</a>
+        <input type="button" value="Cancel" onclick="delete_modal_cancel()">
       </div>
       <div class="ui button">
-          <a href="{% url 'post_delete' post.id %}">Yes</a>
+          <a href="{% url 'post_delete' city.id post.id %}">Yes</a>
       </div>
     </div>
   </div>
@@ -37,7 +37,9 @@
     function delete_modal(){
       $('#delete_modal').modal('show');
     }
-  
+    function delete_modal_cancel(){
+      $('#delete_modal').modal('hide');
+    }
   
   </script>
 {% endblock %}
