@@ -16,8 +16,8 @@ from django.contrib.auth.models import User
 
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
-    post_form = Post_Form()
-    context={'city':city,'post_form': post_form }
+    posts = Post.objects.filter(city=city_id)
+    context={'city':city, 'posts':posts }
     return render(request, 'cities/detail.html', context)
 
 #  Home view
@@ -35,10 +35,10 @@ def post_index(request):
         if post_form.is_valid():
             post_form.save()
             return redirect('post_index')
-    posts = Post.objects.all()
+   
     city = City.objects.all()
     post_form = Post_Form()
-    context = {'posts':posts, 'post_form': post_form, 'city':city}
+    context = {'post_form': post_form, 'city':city}
     return render(request, 'posts/index.html', context)
 
 # Show Post View 
