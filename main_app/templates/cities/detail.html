@@ -4,7 +4,22 @@
 {% block content %}
 
 
+
+
+
+
 <h1>{{city.name}}</h1>
-{{city.image}}
+<p><a href="{% url 'city_detail' city.id %}">
+    <img class="rounded ui image" src="{{ city.image }}">
+</a> 
+</p>
+
+<div class="ui selection dropdown">
+<form class="ui form" action="{% url 'post_index' %}" method="POST" >
+    {% csrf_token %}
+    {{ post_form.as_p }}
+    <input type="submit" class="ui button" value="Add Post" /> 
+    </form>
+</div>
 
 {% endblock%}

@@ -31,7 +31,7 @@
 
           <div class="right item">
 
-
+            <a id="all_icon" class="ui grey basic button" href="{% url 'post_index' %}">All Posts</a>
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
@@ -39,8 +39,11 @@
 <a class="ui grey basic button" href="{% url 'logout' %}">Log Out</a>
 {% else %}
 
-            <a href="{% url 'login' %}" id="login" class="ui grey basic button">Log in</a>
-            <a href="{% url 'signup' %}" id="register"class="ui grey basic button">Register</a>
+
+          <!-- Modals-->
+            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui grey basic button">
+            <input id="logout_icon" type="button" value="Register" onclick="register_form()" class="ui grey basic button">
+          <!-- End Modals-->
     
             {% endif %}
           </div>
@@ -54,4 +57,58 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 </body>
+
+
+<div id="login_form" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Log in
+  </div>
+  <div class="content">
+      <form method="post" action="{% url 'login' %}" class="ui form">
+        {% csrf_token %}
+        {{ login_form.as_p }}
+        <input type="submit" class="btn" value="login">
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
+</div>
+
+<div id="register_form" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Sign Up
+  </div>
+  <div class="content">
+    <form method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <p>Email<input type="text" name="email"></p>
+      <p>Confirm Email:<input type="text" name="confirm_email"></p>
+      {{ register_form.as_p }}
+      <input type="submit" class="btn" value="signup">
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
+</div>
+
+
+
+<script>
+  function login_form(){
+    $('#login_form').modal('show');
+  }
+
+  function register_form(){
+    $('#register_form').modal('show');
+  }
+
+</script>
+
 </html>

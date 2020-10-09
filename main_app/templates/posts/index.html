@@ -2,38 +2,44 @@
 
 {% block content %}
 
-<div class="ui stackable three wide column grid">
-  
-      <div class="column">
-         
-        <div class="row">
-            <h1>CITIES</h1>
-            {% for city in city %}
-                <div class="four wide column">
-                    <p><a href="{% url 'city_detail' city.id %}">
-                        <img class="ui image" src="{{ city.image }}">
-                    </a> 
-                </p>
-                 
-              </div>
-              {% endfor %} 
+
+
+
             
-        </div>
-        <div class="row">
-        <h1>POSTS</h1>
-        {% for post in posts %}
-            <div class="four wide column">
-                <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> </p>
+      
+   
+          <div class="ui two column divided grid">
+            <div class="four column row">
+              <div id="all_cities" class="column">  <!-- CITIES -->
+
+                <h1>CITIES</h1>
+                {% for city in city %}
+                    
+                        <p><a href="{% url 'city_detail' city.id %}">
+                            <img class="rounded ui image" src="{{ city.image }}">
+                        </a> 
+                    </p>
+                     
+            
+                  {% endfor %} </div>
+              <div id="all_posts" class=" centered column">  <!-- POSTS -->
+                <h1>POSTS</h1>
+                {% for post in posts %}
+                    
+                        <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> </p>
+                  
+                  {% endfor %} 
+                </div>
+            </div>
           </div>
-          {% endfor %} 
-        
-    </div>
-    
   
     
- </div>
+ 
 
 
+
+
+ 
 
 
 {% endblock%}
