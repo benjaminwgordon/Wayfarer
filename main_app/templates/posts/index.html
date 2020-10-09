@@ -22,14 +22,7 @@
                      
             
                   {% endfor %} </div>
-              <div id="all_posts" class=" centered column">  <!-- POSTS -->
-                <h1>POSTS</h1>
-                {% for post in posts %}
-                    
-                        <p><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></p>
-                  
-                  {% endfor %} 
-                </div>
+            
             </div>
           </div>
          
