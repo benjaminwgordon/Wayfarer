@@ -4,6 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
 from .forms import Post_Form, Profile_Form
+from django.contrib.auth.models import User
+
 
 # Create your views here
 
@@ -58,9 +60,12 @@ def signup(request):
     error_message = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            profile = Profile.create(user)
+        email = request.POST['email']
+        confirm_email = request.POST['confirm_email']
+        if form.is_valid() and email == confirm_email:
+            user = form.save(commit=False)
+            user.email = email
+            user.save()
             login(request, user)
             return redirect('profile_edit')
         else:
@@ -74,28 +79,30 @@ def signup(request):
 
 
 def profile_details(request):
-    profile = Profile.objects.get(user=request.user.id)
+    # handle profile show
+    posts = Post.objects.filter(author=request.user.profile)
+    print("posts: ", posts)
     context = {
-        'profile': profile
+        'profile': request.user.profile,
+        'posts': posts
     }
-    return render(request, 'registration/detail.html', context)
+    return render(request, 'registration/profile.html', context)
 
 def profile_edit(request):
-    profile = Profile.objects.get(user=request.user.id)
     if request.method == "POST":
         #handle profile update
-        profile_form = Profile_Form(request.POST, instance=profile)
+        profile_form = Profile_Form(request.POST, instance=request.user.profile)
         if profile_form.is_valid():
             profile_form.save()
-            return redirect('profile_detail')
+            return redirect('profile')
     else:
         #handle profile edit
-        profile_form = Profile_Form(instance=profile)
+        profile_form = Profile_Form(instance=request.user.profile)
         context = {
-            'profile': profile,
-            'form': profile_form
+            'profile': request.user.profile,
+            'profile_form': profile_form
         }
-        return render(request, 'registration/profile.html', context)
+        return render(request, 'registration/profile_edit.html', context)
 
 def profile_delete(request):
-    pass
+    return 
