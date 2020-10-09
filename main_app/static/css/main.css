@@ -1,4 +1,5 @@
 
+
 .vertical.fotorama {
     
     padding: 1em 0em;
@@ -39,10 +40,18 @@ color:#2e6e65;
 margin: .5em;
 }
 
-.post{
-   
+#all_icon{
+   margin: .5em;
+ 
 }
 
+#login_icon{
+    margin: .5em;
+}
+
+#logout_icon{
+    margin: .5em;
+}
 
 
 #way_con{

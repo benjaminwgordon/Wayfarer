@@ -41,7 +41,9 @@ def post_details(request, post_id):
 
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
-    return render(request, 'cities/detail.html', {'city':city})
+    post_form = Post_Form()
+    context={'city':city,'post_form': post_form }
+    return render(request, 'cities/detail.html', context)
 
 # Post Delete
 def post_delete(request, post_id):
