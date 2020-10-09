@@ -26,8 +26,9 @@ def post_index(request):
             post_form.save()
             return redirect('post_index')
     posts = Post.objects.all()
+    city = City.objects.all()
     post_form = Post_Form()
-    context = {'posts':posts, 'post_form': post_form}
+    context = {'posts':posts, 'post_form': post_form, 'city':city}
     return render(request, 'posts/index.html', context)
 
 # Show Post View 
@@ -35,6 +36,12 @@ def post_index(request):
 def post_details(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, 'posts/detail.html', {'post': post}) 
+
+# City show view
+
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    return render(request, 'cities/detail.html', {'city':city})
 
 # Post Delete
 def post_delete(request, post_id):
