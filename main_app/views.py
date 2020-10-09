@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
 from .forms import Post_Form, Profile_Form
@@ -48,7 +48,7 @@ def post_edit(request, post_id):
         post_form = Post_Form(request.POST, instance = post)
         if post_form.is_valid(): 
             post_form.save()
-            return redirect('detail', post_id = post_id)
+            return redirect('post_detail', post_id = post_id)
     else:
         post_form = Post_Form(instance = post)
         context = {'post':post, 'post_form':post_form}
@@ -105,4 +105,7 @@ def profile_edit(request):
         return render(request, 'registration/profile_edit.html', context)
 
 def profile_delete(request):
-    return 
+    user = request.user
+    logout(request)
+    user.profile.delete()
+    return redirect('signup')

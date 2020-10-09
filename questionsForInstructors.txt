@@ -1,5 +1,7 @@
-Should we cascade deletes on our reference from Profiles to Django Users?
-Should we have a field on Posts for their authors?
+Should we cascade deletes on our reference from Profiles to Django Users? Yes
+
+Can I cascade a delete from profile to User?
+
 
 
 
