@@ -114,5 +114,5 @@ def profile_edit(request):
 def profile_delete(request):
     user = request.user
     logout(request)
-    user.profile.delete()
+    user.delete()
     return redirect('signup')
