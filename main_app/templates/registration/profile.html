@@ -5,8 +5,8 @@
     <p>name: {{profile.name}}</p>
     <p>current city: {{profile.current_city}}</p>
     <p>Member since: {{profile.join_date}}</p>
-    <a href="{{ url 'profile_edit' profile.id}}"></a>
-    <a href="{{ url 'profile_delete' profile.id}}"></a>
+    <a href="{% url 'profile_edit' %}">Edit</a>
+    <a href="{% url 'profile_delete' %}">Delete</a>
 </div>
 
 {% endblock %}
