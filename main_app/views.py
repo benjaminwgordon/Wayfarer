@@ -11,7 +11,9 @@ from .forms import Post_Form, Profile_Form
 #  Home view
 
 def home(request):
-    return render(request, 'home.html')
+    posts = Post.objects.all()
+    context = {'posts':posts}
+    return render(request, 'home.html', context)
 
 # Index & Create View 
 
