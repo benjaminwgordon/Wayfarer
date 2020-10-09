@@ -13,7 +13,9 @@ from django.contrib.auth.models import User
 #  Home view
 
 def home(request):
-    return render(request, 'home.html')
+    posts = Post.objects.all()
+    context = {'posts':posts}
+    return render(request, 'home.html', context)
 
 # Index & Create View 
 
