@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -7,8 +7,18 @@ from .forms import Post_Form, Profile_Form
 from django.contrib.auth.models import User
 
 
+
 # Create your views here
 
+
+
+# City show view
+
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    post_form = Post_Form()
+    context={'city':city,'post_form': post_form }
+    return render(request, 'cities/detail.html', context)
 
 #  Home view
 
@@ -37,13 +47,7 @@ def post_details(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, 'posts/detail.html', {'post': post}) 
 
-# City show view
 
-def city_detail(request, city_id):
-    city = City.objects.get(id=city_id)
-    post_form = Post_Form()
-    context={'city':city,'post_form': post_form }
-    return render(request, 'cities/detail.html', context)
 
 # Post Delete
 def post_delete(request, post_id):
