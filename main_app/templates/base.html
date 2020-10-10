@@ -31,7 +31,7 @@
 
           <div class="right item">
 
-            <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Posts</a>
+            <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
@@ -59,43 +59,37 @@
 </body>
 
 
-<div id="login_form" class="ui modal">
+<div style="max-width: 600px; max-height: 600px;" id="login_form" class="ui modal">
   <i class="close icon"></i>
   <div class="header">
     Log in
   </div>
-  <div class="content">
+  <div style="max-width:400px;margin:auto" class="content">
       <form method="post" action="{% url 'login' %}" class="ui form">
         {% csrf_token %}
         {{ login_form.as_p }}
-        <input type="submit" class="btn" value="login">
+        <input type="submit" class="ui button" value="login">
         <input type="hidden" name="next" value="{{ next }}">
       </form>
   </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
+  
 </div>
 
-<div id="register_form" class="ui modal">
+<div style="max-width: 600px;" id="register_form" class="ui modal">
   <i class="close icon"></i>
   <div class="header">
     Sign Up
   </div>
-  <div class="content">
-    <form method="post" action="{% url 'signup' %}">
+  <div style="max-width:400px;margin:auto" class="content">
+    <form method="post" action="{% url 'signup' %}" class="ui form">
       {% csrf_token %}
       <p>Email<input type="text" name="email"></p>
       <p>Confirm Email:<input type="text" name="confirm_email"></p>
       {{ register_form.as_p }}
-      <input type="submit" class="btn" value="signup">
+      <input type="submit" class="ui button" value="signup">
     </form>
   </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
+ 
 </div>
 
 

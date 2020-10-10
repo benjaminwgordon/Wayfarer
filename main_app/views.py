@@ -40,6 +40,7 @@ def post_create(request, city_id):
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
             post_form.save()
+            post_form
             return redirect('city_detail', city_id=city_id)
 
 # Show Post View 
@@ -47,9 +48,11 @@ def post_create(request, city_id):
 def post_detail(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
+    post_form = Post_Form()
     context = {
         'city': city,
-        'post': post
+        'post': post,
+        'post_form': post_form
     }
     return render(request, 'posts/detail.html', context) 
 
@@ -99,16 +102,18 @@ def signup(request):
         'form': form,
         'error_message': error_message
     }
-    return render(request, 'registration/signup.html', context)
+    return render(request, 'home.html', context)
 
 
 def profile_details(request):
     # handle profile show
     posts = Post.objects.filter(author=request.user.profile)
+    profile_form = Profile_Form()
     print("posts: ", posts)
     context = {
         'profile': request.user.profile,
-        'posts': posts
+        'posts': posts,
+        'profile_form':profile_form,
     }
     return render(request, 'registration/profile.html', context)
 
@@ -132,4 +137,4 @@ def profile_delete(request):
     user = request.user
     logout(request)
     user.delete()
-    return redirect('signup')
+    return redirect('home')
