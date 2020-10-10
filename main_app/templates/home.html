@@ -43,31 +43,19 @@
             
             <img src="https://s.fotorama.io/1.jpg">
             <img src="https://s.fotorama.io/2.jpg">
+            {% for city in cities %}
+            <img alt="{{city.name }}" src="{{city.image}}"><br>
+         
+            
+            {% endfor %}
         </div>
           
            
       <!-- Add images to <div class="fotorama"></div> -->
 
-    </div>
-    {% for post in posts %}
-    <div class="ui stackable four column grid">
-        
-        <div class="four wide column">
-            <h2>{{ post.city }} </h2><br>
-        
-        </div>
-        <div class="four wide column">
-            <h2>{{ post.city }} </h2><br>
-           
-        </div>
-        <div class="four wide column">
-            <h2>{{ post.city }} </h2><br>
-          
-        </div>
-        
-      </div>
     
-      {% endfor %} 
+    
+      
     </div>
  </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

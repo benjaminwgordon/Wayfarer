@@ -29,8 +29,11 @@ def city_detail(request, city_id):
 #  Home view
 
 def home(request):
+    cities = City.objects.all()
     posts = Post.objects.all()
-    context = {'posts':posts}
+    context = {'posts':posts,
+                'cities': cities,
+                }
     return render(request, 'home.html', context)
 
 # Index & Create View 
