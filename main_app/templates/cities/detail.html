@@ -29,14 +29,16 @@
               <h1>{{city.name}}</h1>
               
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                      <img class="rounded ui image" src="{{ city.image }}">
+                      <img class="rounded large ui image" src="{{ city.image }}">
                 </a></p>
                 {% endif %}
                 {% endfor %} 
               
         <h1>POSTS</h1>
-        <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button">
-
+       
+          <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button" />
+       
+        
         {% for post in posts %}
             
                 <p><a href="{% url 'post_detail' currentCity.id post.id %}">{{ post.title }}</a>
@@ -52,19 +54,16 @@
   <div id="add_post" class="ui modal">
   <i class="close icon"></i>
   <div class="header">
-    Add Post
+    Add Post to {{currentCity}}
   </div>
   <div class="content">
-    <form action="{% url 'post_create' currentCity.id %}" method="POST">
+    <form class="ui form" action="{% url 'post_create' currentCity.id %}" method="POST">
         {% csrf_token %}
         {{ post_form.as_p }}
         <input type="submit" class="ui rounded grey button" value="Add Post" />
     </form>
   </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
+ 
 </div>
 
 

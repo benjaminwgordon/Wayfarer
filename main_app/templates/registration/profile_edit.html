@@ -1,12 +1,114 @@
+
 {% extends 'base.html'%}
 {% block content %}
 
 
-<form action="{% url 'profile_edit'%}" method="post">
+
+<div class="ui two column divided grid">
+    <div class="four column row">
+      <div id="profile_info" class="column"> 
+        <div style="max-width: 300px; margin: 3em 7em;" class="ui card">
+            <div class="image">
+              <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
+            </div>
+            <div class="content">
+              <a class="header"> Welcome, {{profile.name}}</a>
+              <div class="meta">
+                <span class="date">Joined on {{profile.join_date}}</span>
+              </div>
+              <div class="city">
+                Lives in {{profile.current_city}}
+              </div>
+            </div>
+            <div class="extra content">
+              <a>
+                
+                <input id="edit_icon" type=" ui button" value="Edit Profile" onclick="edit_profile_form()" class="ui grey basic button ">
+                
+                <input id="confirm_delete" type="ui button" value="Delete Profile" onclick="delete_modal()" class="ui grey basic button">
+              </a>
+            </div>
+          </div>
+        
+          </div>
+      
+      <div id="ind_posts" class=" centered column"> 
+           <!-- POSTS -->
+           <div id="ind_posts" class="column" style="margin: 3em 0em 0em .5em;"> 
+             <h1>{{profile.name}}'s Post</h1>
+          
+            
+            
+        <p>{{ post.title }}
+        {{ post.author }}
+        {{ post.body }}
+    </p>
+
+        
+            <p>This user has not authored any posts</p>
+     
+        </div>
+
+      
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div style="max-width: 600px;" id="edit_form" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Edit Profile
+    </div>
+    <div style="max-width:400px;margin:auto" class="content">
+     
+<form action="{% url 'profile_edit'%}" method="post" class="ui form">
     {% csrf_token %}
     {{ profile_form.as_p }}
-    <input type="submit" value="Edit Profile">
+    <input type="submit" class="ui button" value="Update Profile">
 </form>
+
+    </div>
+   
+  </div>
+  
+  <div id="delete_modal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Delete {{profile.name}}
+    </div>
+    <div class="content">
+        Are you sure you want to delete {{profile.name}} ?
+        
+    </div>
+    <div class="actions">
+      
+      <div class="ui button">
+          <a href="{% url 'profile_delete' %}">Yes</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+   
+  
+    function edit_profile_form(){
+      $('#edit_form').modal('show');
+    }
+   
+    function delete_modal(){
+      $('#delete_modal').modal('show');
+    }
+    function delete_modal_cancel(){
+      $('#delete_modal').modal('hide');
+    }
+  
+
+  </script>
+
 
 
 {% endblock %}

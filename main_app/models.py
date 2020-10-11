@@ -43,6 +43,6 @@ class Post(models.Model):
         return str(self.author) + self.title
 
 
-# sorts table newest first
+# sorts table newest to oldest
     class Meta:
-        ordering = ['created_at']
+        ordering = ['-created_at']

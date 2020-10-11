@@ -5,9 +5,11 @@
         <div class="ui card">
         <h3>{{post.title}}</h3>
         <p>{{post.body}}</p>
-        <p>{{post.author}}</p>
-        <a href="{% url 'post_edit' city.id post.id %}" class="ui button">Edit</a>
-    
+
+        <a href="{% url 'profile' %}"><p>{{post.author}}</p></a>
+        <br>
+        Posted: <p>{{post.created_at}}</p></a>
+        <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_profile_form()" class="ui grey basic button">
         <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
       
     </div>
@@ -24,14 +26,31 @@
         
     </div>
     <div class="actions">
-      <div class="ui button">
-        <input type="button" value="Cancel" onclick="delete_modal_cancel()">
-      </div>
+      
       <div class="ui button">
           <a href="{% url 'post_delete' city.id post.id %}">Yes</a>
       </div>
     </div>
   </div>
+
+  <div style="max-width: 600px;" id="edit_form" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Edit {{post.title}}
+    </div>
+    <div style="max-width:400px;margin:auto" class="content">
+     
+ <form action="{% url 'post_edit' city.id post.id%}" method="POST" class="ui form">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <input type="submit" class="ui button" value="Update Post" />
+    </form>
+
+    </div>
+
+  </div>
+
+ 
 
   <script>
     function delete_modal(){
@@ -40,7 +59,10 @@
     function delete_modal_cancel(){
       $('#delete_modal').modal('hide');
     }
-  
+
+    function edit_profile_form(){
+      $('#edit_form').modal('show');
+    }
   </script>
 {% endblock %}
 
