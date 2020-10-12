@@ -10,8 +10,6 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here
 
-
-
 # City show view
 @login_required
 def city_detail(request, city_id):
@@ -36,8 +34,13 @@ def post_create(request, city_id):
     if request.method == 'POST':
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
-            post_form.save()
-            post_form
+            post_form.save(commit=False)
+            title = request.POST['title']
+            body = request.POST['body']
+            city = City.objects.get(id=city_id).id
+            author = Profile.objects.get(id=request.user.profile.id).id
+            post = Post(author_id=author, city_id=city, title=title, body=body)
+            post.save()
             return redirect('city_detail', city_id=city_id)
 
 # Show Post View 
