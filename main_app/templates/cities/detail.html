@@ -38,17 +38,24 @@
        
           <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button" />
        
-        
+       <ul style="list-style: none;">
         {% for post in posts %}
-            
-                <p><a href="{% url 'post_detail' currentCity.id post.id %}">{{ post.title }}</a>
-                {{ post.author }}
+            <li>
+               <h2><p><a href="{% url 'post_detail' currentCity.id post.id %}">{{ post.title }}</a></h2> 
+                  <div  class="post">
+                {{ post.title }} <br>
+                {{ post.author }} <br>
                 {{ post.body }}
+              </li>
             </p>
+    
+            
           {% endfor %} 
+        </ul>
         </div>
         </div>
-    </div>
+        </div>
+      </div>
 
  
   <div id="add_post" class="ui modal">
