@@ -3,7 +3,6 @@
 
 {% block content %}
 
-
 <div class="ui two column divided grid">
     <div class="four column row">
       <div id="all_cities" class="column"> 
@@ -24,16 +23,16 @@
       <div id="all_posts" class=" centered column"> 
            <!-- POSTS -->
            <div id="all_cities" class="column"> 
+           <ul>
             {% for city in cities %}
             {% if city == currentCity %}
-              <h1>{{city.name}}</h1>
-              
+                <h1>{{city.name}}</h1>
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
                       <img class="rounded large ui image" src="{{ city.image }}">
                 </a></p>
                 {% endif %}
                 {% endfor %} 
-              
+            </ul>
         <h1>POSTS</h1>
        
           <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button" />
@@ -55,33 +54,25 @@
         </div>
         </div>
         </div>
-      </div>
 
- 
-  <div id="add_post" class="ui modal">
+
+<div id="add_post" class="ui modal">
   <i class="close icon"></i>
   <div class="header">
     Add Post to {{currentCity}}
   </div>
   <div class="content">
-    <form class="ui form" action="{% url 'post_create' currentCity.id %}" method="POST">
+    <form class="ui form" action="{% url 'city_detail' currentCity.id %}" method="POST">
         {% csrf_token %}
+        {{ post_create_form_errors }}
         {{ post_form.as_p }}
         <input type="submit" class="ui rounded grey button" value="Add Post" />
     </form>
   </div>
- 
 </div>
 
 
 
-<script>
-  
-  function add_post(){
-    $('#add_post').modal('show');
-  }
-
-</script>
 
 
 

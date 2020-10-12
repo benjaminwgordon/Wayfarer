@@ -5,14 +5,14 @@
         <div class="ui card">
          
         <h3>{{post.title}}</h3>
-        <p>Author: {{post.author}}</p>
         <p>{{post.body}}</p>
+        <p>{{post.author}}</p>
+        <p>Posted: {{post.created_at}}</p></a>
 
-       
-        <br>
-        Posted: <p>{{post.created_at}}</p></a>
-        <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_profile_form()" class="ui grey basic button">
-        <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
+        {% if is_owner %}
+          <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_profile_form()" class="ui grey basic button">
+          <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
+        {% endif %}
       
     </div>
     </form>
@@ -28,7 +28,6 @@
         
     </div>
     <div class="actions">
-      
       <div class="ui button">
           <a href="{% url 'post_delete' city.id post.id %}">Yes</a>
       </div>
