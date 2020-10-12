@@ -2,15 +2,19 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from .models import City, Profile, Post
+# 
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
+# 
 
 class Post_Form(ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
         exclude = ['city', 'author']
+
 
     def clean(self):
         body = self.cleaned_data['body']
@@ -27,6 +31,7 @@ class Profile_Form(ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'current_city']
+
 
 class NewUserForm(UserCreationForm):
 
