@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import HttpResponse
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
 from .forms import Post_Form, Profile_Form
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here
@@ -61,8 +62,12 @@ def post_detail(request, city_id, post_id):
 # Post Delete
 @login_required
 def post_delete(request, city_id, post_id):
-    post = Post.objects.get(id=post_id).delete()
-    return redirect('city_detail', city_id=city_id)
+        error_message = ''
+        if Post.objects.get(id=post_id).author.id == request.user.profile.id:
+            post = Post.objects.get(id=post_id).delete()
+            return redirect('city_detail', city_id=city_id)
+        else:
+            return redirect('post_detail', city_id=city_id, post_id=post_id)
 
 # Post Edit
 @login_required
@@ -95,8 +100,9 @@ def signup(request):
             user = form.save(commit=False)
             user.email = email
             user.save()
+            # valid_user = authenticate(request, username = request.POST['username'])
             login(request, user)
-            return redirect('profile_edit')
+            return redirect('profile')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -109,7 +115,7 @@ def signup(request):
 @login_required
 def profile_details(request):
     # handle profile show
-    posts = Post.objects.filter(author=request.user.profile)
+    posts = Post.objects.filter(author=request.user.profile.id)
     profile_form = Profile_Form()
     print("posts: ", posts)
     context = {
