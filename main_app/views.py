@@ -10,7 +10,7 @@ from django.forms import ValidationError
 
 
 # Create your views here
-
+    
 # City show view
 @login_required
 def city_detail(request, city_id):
@@ -85,19 +85,15 @@ def post_delete(request, city_id, post_id):
 def post_edit(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
-    if request.method == 'POST':
-        post_form = Post_Form(request.POST, instance = post)
-        if post_form.is_valid(): 
-            post_form.save()
+    if Post.objects.get(id=post_id).author.id == request.user.profile.id:
+        if request.method == 'POST':
+            post_form = Post_Form(request.POST, instance = post)
+            if post_form.is_valid(): 
+                post_form.save()
             return redirect('post_detail', post_id = post_id, city_id = city_id)
     else:
         post_form = Post_Form(instance = post)
-        context = {
-            'post':post, 
-            'post_form':post_form,
-            'city': city
-        }
-        return render(request, 'posts/edit.html', context)
+        return redirect('post_detail', post_id = post_id, city_id = city_id)
 
 # Create your views here.
 
