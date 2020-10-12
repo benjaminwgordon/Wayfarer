@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import HttpResponse
-from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
 from .forms import Post_Form, Profile_Form
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+# 
 
+# 
 
-# Create your views here
 
 # City show view
 @login_required
@@ -83,8 +84,7 @@ def post_edit(request, city_id, post_id):
         }
         return render(request, 'posts/edit.html', context)
 
-# Create your views here.
-
+# Signup
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -142,3 +142,5 @@ def profile_delete(request):
     logout(request)
     user.delete()
     return redirect('home')
+
+    

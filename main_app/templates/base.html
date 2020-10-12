@@ -30,8 +30,16 @@
         
 
           <div class="right item">
-
             <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
+
+{% comment %}
+TODO
+adding button (dropdown menu for user preferred?)
+need to add path / link to user account 
+fix button spacing
+{% endcomment %}
+          <div class="right item">
+            <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">Profile</a>
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
