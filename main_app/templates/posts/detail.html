@@ -3,10 +3,12 @@
 
 <div  class="ui container">
         <div class="ui card">
+         
         <h3>{{post.title}}</h3>
+        <p>Author: {{post.author}}</p>
         <p>{{post.body}}</p>
 
-        <a href="{% url 'profile' %}"><p>{{post.author}}</p></a>
+       
         <br>
         Posted: <p>{{post.created_at}}</p></a>
         <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_profile_form()" class="ui grey basic button">

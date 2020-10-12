@@ -39,14 +39,15 @@
           
             
             
-        <p>{{ post.title }}
-        {{ post.author }}
-        {{ post.body }}
-    </p>
+       
 
-        
-            <p>This user has not authored any posts</p>
-     
+        {% for post in posts %}
+        <p>{{ post.title }}
+          {{ post.author }}
+          {{ post.body }}
+      </p>
+            <p>This user has not authored any posts</p> 
+     {% endfor %}
         </div>
 
       
