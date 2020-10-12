@@ -1,15 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
 from .forms import Post_Form, Profile_Form
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-# 
-
-# 
-
+from django.core.exceptions import ObjectDoesNotExist
+    
 
 # City show view
 @login_required
@@ -17,17 +15,23 @@ def city_detail(request, city_id):
     cities = City.objects.all()
     city = City.objects.get(id=city_id)
     posts = Post.objects.filter(city=city_id)
+
     context={
         'currentCity':city,
         'cities': cities,
         'posts': posts,
-        'post_form': Post_Form()
+        'post_form': Post_Form(),
+        
         }
     return render(request, 'cities/detail.html', context)
 
 #  Home view
 def home(request):
-    return render(request, 'home.html')
+    cities = City.objects.all()
+    context={
+       'cities': cities, 
+    }
+    return render(request, 'home.html', context)
 
 # Index & Create View 
 @login_required
@@ -62,27 +66,27 @@ def post_detail(request, city_id, post_id):
 # Post Delete
 @login_required
 def post_delete(request, city_id, post_id):
-    post = Post.objects.get(id=post_id).delete()
-    return redirect('city_detail', city_id=city_id)
+        error_message = ''
+        if Post.objects.get(id=post_id).author.id == request.user.profile.id:
+            post = Post.objects.get(id=post_id).delete()
+            return redirect('city_detail', city_id=city_id)
+        else:
+            return redirect('post_detail', city_id=city_id, post_id=post_id)
 
 # Post Edit
 @login_required
 def post_edit(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
-    if request.method == 'POST':
-        post_form = Post_Form(request.POST, instance = post)
-        if post_form.is_valid(): 
-            post_form.save()
+    if Post.objects.get(id=post_id).author.id == request.user.profile.id:
+        if request.method == 'POST':
+            post_form = Post_Form(request.POST, instance = post)
+            if post_form.is_valid(): 
+                post_form.save()
             return redirect('post_detail', post_id = post_id, city_id = city_id)
     else:
         post_form = Post_Form(instance = post)
-        context = {
-            'post':post, 
-            'post_form':post_form,
-            'city': city
-        }
-        return render(request, 'posts/edit.html', context)
+        return redirect('post_detail', post_id = post_id, city_id = city_id)
 
 # Signup
 def signup(request):
@@ -95,8 +99,9 @@ def signup(request):
             user = form.save(commit=False)
             user.email = email
             user.save()
+            # valid_user = authenticate(request, username = request.POST['username'])
             login(request, user)
-            return redirect('profile_edit')
+            return redirect('profile')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -109,7 +114,7 @@ def signup(request):
 @login_required
 def profile_details(request):
     # handle profile show
-    posts = Post.objects.filter(author=request.user.profile)
+    posts = Post.objects.filter(author=request.user.profile.id)
     profile_form = Profile_Form()
     print("posts: ", posts)
     context = {

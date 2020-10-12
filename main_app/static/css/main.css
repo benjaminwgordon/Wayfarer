@@ -45,6 +45,10 @@ margin: .5em;
  
 }
 
+#profile_icon{
+    margin: .5em;
+}
+
 #login_icon{
     margin: .5em;
 }
@@ -52,7 +56,6 @@ margin: .5em;
 #logout_icon{
     margin: .5em;
 }
-
 
 #way_con{
     display: flex;
@@ -65,3 +68,8 @@ margin: .5em;
     font-size: 3em;
 }
 
+li:first-child{
+    color: crimson;
+    
+  
+}

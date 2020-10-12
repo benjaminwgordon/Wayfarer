@@ -46,3 +46,5 @@ class Post(models.Model):
 # sorts table newest to oldest
     class Meta:
         ordering = ['-created_at']
+
+
