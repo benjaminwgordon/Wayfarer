@@ -31,26 +31,29 @@
 
           <div class="right item">
 
-            <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
+         
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
-    {% comment %} <li><a href="{% url 'profile'%}"> Welcome, {{ user.username }}</a></li> {% endcomment %}
-<a class="ui grey basic button" href="{% url 'logout' %}">Log Out</a>
-{% else %}
+     <a id="profile_icon" class="ui grey basic button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>
+<a class="ui grey basic button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
+{% else %} 
 
 
           <!-- Modals-->
             <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui grey basic button">
-            <input id="logout_icon" type="button" value="Register" onclick="register_form()" class="ui grey basic button">
+            <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui grey basic button">
           <!-- End Modals-->
     
             {% endif %}
+            <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
           </div>
         </div>
       </div>
+   
       {% block content %}
       {% endblock %}
+
 </nav>
     
 
