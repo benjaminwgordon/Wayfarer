@@ -5,15 +5,13 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
 from .forms import Post_Form, Profile_Form
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here
 
-
-
 # City show view
-
+@login_required
 def city_detail(request, city_id):
     cities = City.objects.all()
     city = City.objects.get(id=city_id)
@@ -27,27 +25,26 @@ def city_detail(request, city_id):
     return render(request, 'cities/detail.html', context)
 
 #  Home view
-
 def home(request):
-    cities = City.objects.all()
-    posts = Post.objects.all()
-    context = {'posts':posts,
-                'cities': cities,
-                }
-    return render(request, 'home.html', context)
+    return render(request, 'home.html')
 
 # Index & Create View 
-
+@login_required
 def post_create(request, city_id):
     if request.method == 'POST':
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
-            post_form.save()
-            post_form
+            post_form.save(commit=False)
+            title = request.POST['title']
+            body = request.POST['body']
+            city = City.objects.get(id=city_id).id
+            author = Profile.objects.get(id=request.user.profile.id).id
+            post = Post(author_id=author, city_id=city, title=title, body=body)
+            post.save()
             return redirect('city_detail', city_id=city_id)
 
 # Show Post View 
-
+@login_required
 def post_detail(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
@@ -62,11 +59,13 @@ def post_detail(request, city_id, post_id):
 
 
 # Post Delete
+@login_required
 def post_delete(request, city_id, post_id):
     post = Post.objects.get(id=post_id).delete()
     return redirect('city_detail', city_id=city_id)
 
 # Post Edit
+@login_required
 def post_edit(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
@@ -107,7 +106,7 @@ def signup(request):
     }
     return render(request, 'home.html', context)
 
-
+@login_required
 def profile_details(request):
     # handle profile show
     posts = Post.objects.filter(author=request.user.profile)
@@ -120,6 +119,7 @@ def profile_details(request):
     }
     return render(request, 'registration/profile.html', context)
 
+@login_required
 def profile_edit(request):
     if request.method == "POST":
         #handle profile update
@@ -136,6 +136,7 @@ def profile_edit(request):
         }
         return render(request, 'registration/profile_edit.html', context)
 
+@login_required
 def profile_delete(request):
     user = request.user
     logout(request)
