@@ -11,6 +11,7 @@ from django.forms import ValidationError
 
 # Create your views here
     
+
 # City show view
 @login_required
 def city_detail(request, city_id):
@@ -95,8 +96,7 @@ def post_edit(request, city_id, post_id):
         post_form = Post_Form(instance = post)
         return redirect('post_detail', post_id = post_id, city_id = city_id)
 
-# Create your views here.
-
+# Signup
 def signup(request):
     if request.method == 'POST':
         form = NewUserForm(request.POST)
@@ -151,3 +151,5 @@ def profile_delete(request):
     logout(request)
     user.delete()
     return redirect('home')
+
+    
