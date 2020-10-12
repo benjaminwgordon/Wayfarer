@@ -23,7 +23,7 @@ class Post_Form(ModelForm):
         title = self.cleaned_data['title']
         if len(title.strip()) < 1:
             raise forms.ValidationError("title is required")
-        if len(title.strip()) > 99:
+        if len(title.strip()) > 100:
             raise forms.ValidationError("title cannot be longer than 100 characters")
         return self.cleaned_data
 
