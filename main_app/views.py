@@ -49,11 +49,13 @@ def post_create(request, city_id):
 def post_detail(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
+    is_owner = Post.objects.get(id=post_id).author.id == request.user.profile.id
     post_form = Post_Form()
     context = {
         'city': city,
         'post': post,
-        'post_form': post_form
+        'post_form': post_form,
+        'is_owner': is_owner
     }
     return render(request, 'posts/detail.html', context) 
 
