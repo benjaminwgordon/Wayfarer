@@ -86,13 +86,12 @@
   <div style="max-width:400px;margin:auto" class="content">
     <form method="post" action="{% url 'signup' %}" class="ui form">
       {% csrf_token %}
-      <p>Email<input type="text" name="email"></p>
-      <p>Confirm Email:<input type="text" name="confirm_email"></p>
+      {{ form_errors }}
+        <h4>{{error}}</h4>
       {{ register_form.as_p }}
       <input type="submit" class="ui button" value="signup">
     </form>
   </div>
- 
 </div>
 
 
@@ -105,6 +104,19 @@
   function register_form(){
     $('#register_form').modal('show');
   }
+
+  {% if form_errors %}
+    register_form()
+  {% endif %}
+
+
+  function add_post(){
+    $('#add_post').modal('show');
+  }
+
+  {% if post_create_form_errors %}
+    add_post()
+  {% endif %}
 
 </script>
 

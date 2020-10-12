@@ -1,63 +1,71 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, City, Post
-from .forms import Post_Form, Profile_Form
+from .forms import Post_Form, Profile_Form, NewUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms import ValidationError
+
+
+# Create your views here
     
 
 # City show view
 @login_required
 def city_detail(request, city_id):
-    cities = City.objects.all()
-    city = City.objects.get(id=city_id)
-    posts = Post.objects.filter(city=city_id)
-
-    context={
-        'currentCity':city,
-        'cities': cities,
-        'posts': posts,
-        'post_form': Post_Form(),
-        
-        }
-    return render(request, 'cities/detail.html', context)
-
-#  Home view
-def home(request):
-    cities = City.objects.all()
-    context={
-       'cities': cities, 
-    }
-    return render(request, 'home.html', context)
-
-# Index & Create View 
-@login_required
-def post_create(request, city_id):
     if request.method == 'POST':
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
             post_form.save(commit=False)
-            title = request.POST['title']
-            body = request.POST['body']
             city = City.objects.get(id=city_id).id
             author = Profile.objects.get(id=request.user.profile.id).id
-            post = Post(author_id=author, city_id=city, title=title, body=body)
+            post = Post(author_id=author, city_id=city, title=request.POST['title'], body=request.POST['body'])
             post.save()
-            return redirect('city_detail', city_id=city_id)
+            return redirect('post_detail', city_id=city_id, post_id=post.id)
+        else:
+            context = {
+                'post_create_form_errors': post_form.errors,
+                'currentCity': City.objects.get(id=city_id),
+                'posts': Post.objects.filter(city=city_id),
+                'cities': City.objects.all(),
+                'post_form': Post_Form()
+            }
+            return render(request, 'cities/detail.html', context) 
+    else:
+        #handling the post_post route
+        cities = City.objects.all()
+        city = City.objects.get(id=city_id)
+        posts = Post.objects.filter(city=city_id)
+        context={
+            'currentCity':city,
+            'cities': cities,
+            'posts': posts,
+            'post_form': Post_Form()
+
+        }
+        return render(request, 'cities/detail.html', context)
+
+#  Home view
+def home(request):
+    context = {
+        'new_user_form': NewUserForm()
+    }
+    return render(request, 'home.html', context)
 
 # Show Post View 
 @login_required
 def post_detail(request, city_id, post_id):
     city = City.objects.get(id=city_id)
     post = Post.objects.get(id=post_id)
+    is_owner = Post.objects.get(id=post_id).author.id == request.user.profile.id
     post_form = Post_Form()
     context = {
         'city': city,
         'post': post,
-        'post_form': post_form
+        'post_form': post_form,
+        'is_owner': is_owner
     }
     return render(request, 'posts/detail.html', context) 
 
@@ -90,24 +98,20 @@ def post_edit(request, city_id, post_id):
 
 # Signup
 def signup(request):
-    error_message = ''
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        email = request.POST['email']
-        confirm_email = request.POST['confirm_email']
-        if form.is_valid() and email == confirm_email:
-            user = form.save(commit=False)
-            user.email = email
-            user.save()
-            # valid_user = authenticate(request, username = request.POST['username'])
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
             login(request, user)
             return redirect('profile')
         else:
-            error_message = 'Invalid sign up - try again'
-    form = UserCreationForm()
+            context = {
+                'form_errors': form.errors
+            }
+            return render(request, 'home.html', context)
+    form = NewUserForm()
     context = {
         'form': form,
-        'error_message': error_message
     }
     return render(request, 'home.html', context)
 
