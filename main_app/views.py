@@ -6,6 +6,7 @@ from .models import Profile, City, Post
 from .forms import Post_Form, Profile_Form
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here
@@ -61,8 +62,12 @@ def post_detail(request, city_id, post_id):
 # Post Delete
 @login_required
 def post_delete(request, city_id, post_id):
-    post = Post.objects.get(id=post_id).delete()
-    return redirect('city_detail', city_id=city_id)
+        error_message = ''
+        if Post.objects.get(id=post_id).author.id == request.user.profile.id:
+            post = Post.objects.get(id=post_id).delete()
+            return redirect('city_detail', city_id=city_id)
+        else:
+            return redirect('post_detail', city_id=city_id, post_id=post_id)
 
 # Post Edit
 @login_required
