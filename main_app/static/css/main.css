@@ -11,12 +11,9 @@ a{
     justify-content: center;
   }
 
-.large.menu{
-    padding: 1em 0em;
-    display: flex;
-    justify-content: center;
-}
-
+  .content{
+      margin-top: 85px;
+  }
 .rounded.image{
     height: 120px;
  width: auto;
@@ -60,22 +57,6 @@ margin: .5em;
 #logout_icon{
     margin: .5em;
 }
-
-#way_con{
-    display: flex;
-    flex-direction: column-reverse;
-    font-size: medium;
-    color: #2e6e65;
-}
-
-#way_icon{
-    font-size: 3em;
- 
-}
-
-/* li:first-child{
-    color: crimson;
-} */
 
 .errorlist{
     color: crimson;
