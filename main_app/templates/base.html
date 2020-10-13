@@ -83,6 +83,10 @@
   <div class="header">
     Sign Up
   </div>
+  
+  {% comment %} <div class="image content">
+    <img class="image" src="https://ak7.picdn.net/shutterstock/videos/10009877/thumb/1.jpg/img/150x150">
+  </div> {% endcomment %}
   <div style="max-width:400px;margin:auto" class="content">
     <form method="post" action="{% url 'signup' %}" class="ui form">
       {% csrf_token %}
