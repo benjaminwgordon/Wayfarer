@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfarer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" href="{% static 'css/semantic.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
     <!-- jQuery 1.8 or later, 33 KB -->
@@ -20,7 +20,7 @@
 
 <nav id="nav">
     <div  class="ui container">
-        <div  class="ui large dark pointing menu">
+        <div  class="ui large  blue pointing menu">
           <!-- a class="toc item"> -->
 
             <a id="way_con" href="{% url 'home' %}">Wayfarer
@@ -32,21 +32,19 @@
           <div class="right item">
 
             
-<!-- For login and registration -->
+        <!-- For login and registration -->
 
-    {% if user.is_authenticated %}
-     <a id="profile_icon" class="ui primary basic button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>
-<a class="ui primary basic button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
-{% else %} 
-
-
-          <!-- Modals-->
-            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui primary basic button">
-            <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui primary basic button">
-          <!-- End Modals-->
+          {% if user.is_authenticated %}
+            <a id="profile_icon" class="ui  blue button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>  
+            <a class="ui  blue   button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
+           {% else %} 
+           <!-- Modals-->
+            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui  blue   button">
+            <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui  blue   button">
+           <!-- End Modals-->
     
             {% endif %}
-            <a id="all_icon" class="ui secondary basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
+            <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
           </div>
         </div>
       </div>
@@ -71,7 +69,7 @@
       <form method="post" action="{% url 'login' %}" class="ui form">
         {% csrf_token %}
         {{ login_form.as_p }}
-        <input type="submit" class="ui primary button" value="Log In" style="margin: auto; display: block;">
+        <input type="submit" class="ui  blue button" value="Log In" style="margin: auto; display: block;">
         <input type="hidden" name="next" value="{{ next }}">
       </form>
   </div>
@@ -90,11 +88,12 @@
         <h4>{{error}}</h4>
       {% endfor %}
       {{ register_form.as_p }}
-        <input type="submit" class="ui primary button" value="Sign Up" style="margin: auto; display: block;">
+        <input type="submit" class="ui  blue button" value="Sign Up" style="margin: auto; display: block;">
     </form>
   </div>
 </div>
-
+</body>
+</html>
 
 
 <script>
