@@ -21,20 +21,26 @@
           </div>
       
       <div id="all_posts" class=" centered column"> 
-           <!-- POSTS -->
+           <!-- POSTS and currenty city -->
 
-           
-           <div id="all_cities" class="column"> 
-           <ul>
-            {% for city in cities %}
-            {% if city == currentCity %}
-                <h1>{{city.name}}</h1>
+           {% for city in cities %}
+           {% if city == currentCity %}
+           <div class="column">
+            <div class="ui fluid card">
+              <div class="image">
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                      <img class="rounded large ui image" src="{{ city.image }}">
-                </a></p>
-                {% endif %}
-                {% endfor %} 
-            </ul>
+                  <img class="rounded large ui image" src="{{ city.image }}">
+            </a></p>
+              </div>
+              <div class="content">
+                <h1>{{city.name}}</h1>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %} 
+           
+      
         
        
           <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button" />
@@ -69,7 +75,7 @@
       
       
         </ul>
-        </div>
+       
         </div>
         </div>
 
