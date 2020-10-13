@@ -68,10 +68,12 @@ margin: .5em;
     font-size: 3em;
 }
 
-li:first-child{
+/* li:first-child{
     color: crimson;
-    
-  
+} */
+
+.errorlist{
+    color: crimson;
 }
 
 .large.header {

@@ -88,8 +88,9 @@
   <div style="max-width:400px;margin:auto" class="content">
     <form method="post" action="{% url 'signup' %}" class="ui form">
       {% csrf_token %}
-      {{ form_errors }}
+      {% for field, error in form_errors %}
         <h4>{{error}}</h4>
+      {% endfor %}
       {{ register_form.as_p }}
       <input type="submit" class="ui button" value="signup">
     </form>
