@@ -1,11 +1,8 @@
-:root{
-    --primary: #86ee60;
-    --primary-sub: #86ee60d2;
-    --secondary: #2e6e65;
-    --light: #f4f7ed;
-    --dark: #2b3752;
+a{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    color: #2e6e65;
 }
-
 
 .vertical.fotorama {
     
@@ -68,11 +65,12 @@ margin: .5em;
     display: flex;
     flex-direction: column-reverse;
     font-size: medium;
-    color: green;
+    color: #2e6e65;
 }
 
 #way_icon{
     font-size: 3em;
+ 
 }
 
 /* li:first-child{
@@ -83,72 +81,16 @@ margin: .5em;
     color: crimson;
 }
 
-.ui.primary{
-    background: var(--primary);
+.large.header {
+    font-family: 'Raleway', sans-serif;
+    font-style: italic;
+    font-weight: 500;
 }
+ .info{
+    font-family: 'Raleway', sans-serif;
+    line-height: 2em;
+ }
 
-.ui.secondary{
-    background-color: var(--secondary)  ; 
-}
-
-.ui.dark{
-    background-color: var(--dark);
-    color: var(--light);
-}
-
-/* Light Button */
-
-.ui.basic.primary.button{
-    background-color: var(--primary);
-    color: var(--secondary);
-}
-
-.ui.basic.primary.button:hover{
-    background-color: var(--primary-sub);
-    color: var(--light);
-}
-
-.ui.basic.primary.button:visited{
-    background-color: var(--primary);
-    color: var(--dark);
-}
-
-/* Secondary Button */
-
-.ui.basic.secondary.button{
-    background-color: var(--dark);
-    border-color: var(--dark) ;
-    color: var(--light) ;
-}
-
-.ui.basic.secondary.button:hover{
-    background-color: var(--secondary)  ;
-    border-color: var(--secondary)  ;
-    color: var(--light)  ;
-}
-
-.ui.basic.secondary.button:visited{
-    background-color: var(--dark)  ;
-    border-color: var(--dark)  ;
-    color: var(--light)  ;
-}
-
-/* Dark Button */
-
-.ui.basic.secondary.button{
-    background-color: var(--dark)  ;
-    border-color: var(--dark)  ;
-    color: var(--light)  ;
-}
-
-.ui.basic.secondary.button:hover{
-    background-color: var(--secondary)  ;
-    border-color: var(--secondary)  ;
-    color: var(--light)  ;
-}
-
-.ui.basic.secondary.button:visited{
-    background-color: var(--dark)  ;
-    border-color: var(--dark)  ;
-    color: var(--light)  ;
-}
+ .way_icons{
+     margin: 2em 2em 1em 3em ;
+ }
