@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,55 +10,41 @@
     <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
     <!-- jQuery 1.8 or later, 33 KB -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    
     <!-- Fotorama from CDNJS, 19 KB -->
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <!-- For Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,500&display=swap" rel="stylesheet">
 </head>
-<body style="font-family: 'Raleway', sans-serif;">
-  <div class="pusher">
-<nav id="nav">
-    
-        <div  class="ui tiny blue fixed pointing menu">
-          <!-- a class="toc item"> -->
-            <div class="way_icons">
-            <a id="way_con" href="{% url 'home' %}">Wayfarer
-                
-            </a>
-          </div>
-        
-
-          <div class="right item">
-        <!-- For login and registration -->
-
-          {% if user.is_authenticated %}
-            <a id="profile_icon" class="ui  blue button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>  
-            <a class="ui  blue   button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
-           {% else %} 
-           <!-- Modals-->
-            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui  blue   button">
-            <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui  blue   button">
-           <!-- End Modals-->
-    
-            {% endif %}
-            <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
-          </div>
-        </div>
-     
-   
+{% comment %} <body style="font-family: 'Raleway', sans-serif;"> {% endcomment %}
+  <div  class="ui fixed  menu">
+    <div class="ui blue container">
+      <!-- a class="toc item"> -->
+      <div class="way_icons">
+        <a id="way_con" href="{% url 'home' %}"><h2>Wayfarer</h2></a>
+      </div>
+      <div class="right item">
+      {% if user.is_authenticated %}
+        <a id="profile_icon" class="ui  blue button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>  
+        <a class="ui  blue   button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
+        {% else %} 
+        <!-- Modals-->
+        <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui  blue   button">
+        <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui  blue   button">
+        <!-- End Modals-->
+        {% endif %}
+        <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
+      </div>
+      </div>
+  </div>
+</div>
+<div class="content">
       {% block content %}
       {% endblock %}
-
-</nav>
-
-
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 </body>
-
-
 <div style="max-width: 600px; max-height: 600px;" id="login_form" class="ui modal">
   <i class="close icon"></i>
   <div class="ui centered dark header">
@@ -73,15 +58,12 @@
         <input type="hidden" name="next" value="{{ next }}">
       </form>
   </div>
-  
 </div>
-
 <div style="max-width: 600px;" id="register_form" class="ui modal">
   <i class="close icon"></i>
   <div class="ui centered dark header">
     Sign Up
   </div>
-  
   {% comment %} <div class="image content">
     <img class="image" src="https://ak7.picdn.net/shutterstock/videos/10009877/thumb/1.jpg/img/150x150">
   </div> {% endcomment %}
@@ -98,30 +80,21 @@
 </div>
 </body>
 </html>
-
-
 <script>
   function login_form(){
     $('#login_form').modal('show');
   }
-
   function register_form(){
     $('#register_form').modal('show');
   }
-
   {% if form_errors %}
     register_form()
   {% endif %}
-
-
   function add_post(){
     $('#add_post').modal('show');
   }
-
   {% if post_create_form_errors %}
     add_post()
   {% endif %}
-
 </script>
-
 </html>
