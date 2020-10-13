@@ -1,4 +1,13 @@
+:root{
+    --primary: #86ee60;
+    --secondary: #2e6e65;
+    --light: #f4f7ed;
+    --dark: #2b3752;
+}
 
+body{
+    background-color: var(--light) !important;
+}
 
 .vertical.fotorama {
     
@@ -61,7 +70,7 @@ margin: .5em;
     display: flex;
     flex-direction: column-reverse;
     font-size: medium;
-    color: #2e6e65;
+    color: var(--primary);
 }
 
 #way_icon{
@@ -74,4 +83,74 @@ margin: .5em;
 
 .errorlist{
     color: crimson;
+}
+
+.ui.primary{
+    background: var(--primary);
+}
+
+.ui.secondary{
+    background-color: var(--secondary) !important; 
+}
+
+.ui.dark{
+    background-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+/* Light Button */
+
+.ui.basic.primary.button{
+    background-color: var(--primary) !important;
+    color: var(--secondary) !important;
+}
+
+.ui.basic.primary.button:hover{
+    background-color: var(--secondary) !important;
+    color: var(--light) !important;
+}
+
+.ui.basic.primary.button:visited{
+    background-color: var(--primary) !important;
+    color: var(--dark) !important;
+}
+
+/* Secondary Button */
+
+.ui.basic.secondary.button{
+    background-color: var(--dark) !important;
+    border-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+.ui.basic.secondary.button:hover{
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+    color: var(--light) !important;
+}
+
+.ui.basic.secondary.button:visited{
+    background-color: var(--dark) !important;
+    border-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+/* Dark Button */
+
+.ui.basic.secondary.button{
+    background-color: var(--dark) !important;
+    border-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+.ui.basic.secondary.button:hover{
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+    color: var(--light) !important;
+}
+
+.ui.basic.secondary.button:visited{
+    background-color: var(--dark) !important;
+    border-color: var(--dark) !important;
+    color: var(--light) !important;
 }

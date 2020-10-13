@@ -20,7 +20,7 @@
 
 <nav id="nav">
     <div  class="ui container">
-        <div  class="ui large secondary pointing menu">
+        <div  class="ui large dark pointing menu">
           <!-- a class="toc item"> -->
 
             <a id="way_con" href="{% url 'home' %}">Wayfarer
@@ -35,18 +35,18 @@
 <!-- For login and registration -->
 
     {% if user.is_authenticated %}
-     <a id="profile_icon" class="ui grey basic button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>
-<a class="ui grey basic button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
+     <a id="profile_icon" class="ui primary basic button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>
+<a class="ui primary basic button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
 {% else %} 
 
 
           <!-- Modals-->
-            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui grey basic button">
-            <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui grey basic button">
+            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui primary basic button">
+            <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui primary basic button">
           <!-- End Modals-->
     
             {% endif %}
-            <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
+            <a id="all_icon" class="ui secondary basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
           </div>
         </div>
       </div>
@@ -64,14 +64,14 @@
 
 <div style="max-width: 600px; max-height: 600px;" id="login_form" class="ui modal">
   <i class="close icon"></i>
-  <div class="header">
+  <div class="ui centered dark header">
     Log in
   </div>
   <div style="max-width:400px;margin:auto" class="content">
       <form method="post" action="{% url 'login' %}" class="ui form">
         {% csrf_token %}
         {{ login_form.as_p }}
-        <input type="submit" class="ui button" value="login">
+        <input type="submit" class="ui primary button" value="Log In" style="margin: auto; display: block;">
         <input type="hidden" name="next" value="{{ next }}">
       </form>
   </div>
@@ -80,7 +80,7 @@
 
 <div style="max-width: 600px;" id="register_form" class="ui modal">
   <i class="close icon"></i>
-  <div class="header">
+  <div class="ui centered dark header">
     Sign Up
   </div>
   <div style="max-width:400px;margin:auto" class="content">
@@ -90,7 +90,7 @@
         <h4>{{error}}</h4>
       {% endfor %}
       {{ register_form.as_p }}
-      <input type="submit" class="ui button" value="signup">
+        <input type="submit" class="ui primary button" value="Sign Up" style="margin: auto; display: block;">
     </form>
   </div>
 </div>
