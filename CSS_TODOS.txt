@@ -1,6 +1,6 @@
-Long titles extend outside of modal window
+Long titles extend outside of modal window (check)
 Modals are not page centered
-Move the profile button to the far right of the header nav
+Move the profile button to the far right of the header nav (check)
 style the city buttons as per the wireframes
 center up the profile page
 center up the cities page

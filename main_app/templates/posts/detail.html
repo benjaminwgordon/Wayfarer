@@ -2,7 +2,7 @@
 {% block content %}
 
 <div  class="ui container">
-        <div class="ui card">
+        <div style="word-wrap: break-word" class="ui card">
          
         <h3>{{post.title}}</h3>
         <p>{{post.body}}</p>
@@ -23,7 +23,7 @@
     <div class="header">
       Delete
     </div>
-    <div class="content">
+    <div style="word-wrap: break-word" class="content">
         Are you sure you want to delete {{post.title}} ?
         
     </div>
@@ -33,10 +33,10 @@
       </div>
     </div>
   </div>
-
+  <div class="ui three column center aligned page grid">
   <div style="max-width: 600px;" id="edit_form" class="ui modal">
     <i class="close icon"></i>
-    <div class="header">
+    <div style="word-wrap: break-word" class="header">
       Edit {{post.title}}
     </div>
     <div style="max-width:400px;margin:auto" class="content">
@@ -46,7 +46,7 @@
         {{ post_form.as_p }}
         <input type="submit" class="ui button" value="Update Post" />
     </form>
-
+</div>
     </div>
 
   </div>
