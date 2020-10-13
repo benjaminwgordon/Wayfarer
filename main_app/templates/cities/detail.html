@@ -34,8 +34,8 @@
 
            {% for city in cities %}
            {% if city == currentCity %}
-           <div style="margin: 0em 0em 0em 7em;" class="column">
-            <div class="ui fluid card">
+           <div style="margin: 0em 0em 0em 7em; min-width: 10em;" class="column">
+            <div class="ui card">
               <div class="image">
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
                   <img class="rounded large ui image" src="{{ city.image }}">
