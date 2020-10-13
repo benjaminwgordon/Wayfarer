@@ -3,29 +3,38 @@
 
 {% block content %}
 
-<div class="ui two divided column center aligned page grid">
-    <div class="four column row">
-      <div id="all_cities" class="column"> 
+
+
+
+<div style=" margin: auto;" class="ui two divided column center aligned page grid">
+ 
+    <div class="three column row">
+      
+      <div id="all_cities" class="column" style="overflow: auto; overflow-x: hidden;max-height: 30em; margin: 5em 2em 2em 2em;"> 
+        
+        <h1 style="font-family: 'Raleway', sans-serif; font-weight: 700;">Cities of The World</h1>
+         
             {% for city in cities %}
-              <h1>{{city.name}}</h1>
+            <header style="font-size: 2em; display: flex; margin: 1em 1em .5em 2.25em;">{{city.name}}</header>
               {% if city == currentCity %}
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                      <img class="rounded ui image" src="{{ city.image }}">
+                 
+                      <img style="max-width: 12em;max-height: 13em; margin: auto;" class="rounded ui image" src="{{ city.image }}">
                 </a></p>
               {% else %}
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                      <img class="rounded ui image" src="{{ city.image }}">
+                      <img style="max-width: 12em;max-height: 13em; margin: auto;" class="rounded ui image" src="{{ city.image }}">
                 </a></p>
               {% endif %}
           {% endfor %} 
           </div>
-      
-      <div id="all_posts" class=" centered column"> 
+        
+      <div id="all_posts" class=" centered column" style="margin: 3em 0em 0em 3em;min-width: 35em;"> 
            <!-- POSTS and currenty city -->
 
            {% for city in cities %}
            {% if city == currentCity %}
-           <div class="column">
+           <div style="margin: 0em 0em 0em 7em;min-width: 35em;" class="column">
             <div class="ui fluid card">
               <div class="image">
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
@@ -35,13 +44,18 @@
               <div class="content">
                 <h1>{{city.name}}</h1>
               </div>
+              <div class="extra content">
+                <div class="right floated add button">
+                  <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button" />
+                </div>
+              </div>
+            
             </div>
           </div>
           {% endif %}
           {% endfor %} 
            
       
-        
        
           <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui basic primary rounded button" />
        
@@ -51,12 +65,14 @@
             
             <div id="ind_posts_cities" class=" centered column" style="margin: 3em 0em 0em 3em;min-width: 30em;"> 
              <div style="margin: 3em 0em 0em 7em;"class="centered column">
-              <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">Posts</h1>
+              <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{currentCity.name}}'s Posts</h1>
              </div>
-             <ul style="list-style: none;">
+           
+             <ul style="list-style: none;overflow: auto; overflow-x: hidden; max-height: 25em; min-width: 40em;">
              {% for post in posts %}
+          
              <div style="word-wrap: break-word; min-width: 30em;" class="ui cards">
-               <div style="margin: 3em 0em 0em 3em;min-width: 30em;" class="card">
+               <div style="margin: 3em 0em 0em 1.5em;min-width: 30em;" class="card">
                  <div class="content">
                    
                    <div class="header">{{ post.title }}</div>
@@ -69,8 +85,7 @@
                </div>
      
       {% endfor %}
-         </div>
-
+        
 
       
       
@@ -79,7 +94,7 @@
         </div>
         </div>
 
-
+      </div>
 <div id="add_post" class="ui modal">
   <i class="close icon"></i>
   <div class="header">
