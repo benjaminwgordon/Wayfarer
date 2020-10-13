@@ -21,12 +21,12 @@
 <body style="font-family: 'Raleway', sans-serif;">
   <div class="pusher">
 <nav id="nav">
-   
-        <div  class="ui large blue pointing menu">
+    
+        <div  class="ui large  blue pointing menu">
           <!-- a class="toc item"> -->
             <div class="way_icons">
             <a id="way_con" href="{% url 'home' %}">Wayfarer
-                <i id="way_icon" class="angle double up icon"></i>
+                
             </a>
           </div>
         
@@ -47,7 +47,8 @@
             <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
           </div>
         </div>
-      
+     
+   
       {% block content %}
       {% endblock %}
 
