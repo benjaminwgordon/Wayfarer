@@ -34,7 +34,7 @@
 
            {% for city in cities %}
            {% if city == currentCity %}
-           <div style="margin: 0em 0em 0em 7em;min-width: 35em;" class="column">
+           <div style="margin: 0em 0em 0em 7em;" class="column">
             <div class="ui fluid card">
               <div class="image">
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">

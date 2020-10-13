@@ -18,43 +18,37 @@
     <!-- For Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,500&display=swap" rel="stylesheet">
 </head>
-<body style="font-family: 'Raleway', sans-serif;">
-  <div class="pusher">
-<nav id="nav">
-    <div  class="ui container">
-        <div  class="ui large  blue pointing menu">
-          <!-- a class="toc item"> -->
-            <div class="way_icons">
-            <a id="way_con" href="{% url 'home' %}">Wayfarer
-                <i id="way_icon" class="angle double up icon"></i>
-            </a>
-          </div>
-        
+{% comment %} <body style="font-family: 'Raleway', sans-serif;"> {% endcomment %}
+  <div  class="ui fixed  menu">
+    <div class="ui blue container">
 
-          <div class="right item">
-        <!-- For login and registration -->
-
-          {% if user.is_authenticated %}
-            <a id="profile_icon" class="ui  blue button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>  
-            <a class="ui  blue   button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
-           {% else %} 
-           <!-- Modals-->
-            <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui  blue   button">
-            <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui  blue   button">
-           <!-- End Modals-->
-    
-            {% endif %}
-            <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
-          </div>
-        </div>
+      <!-- a class="toc item"> -->
+      <div class="way_icons">
+        <a id="way_con" href="{% url 'home' %}"><h2>Wayfarer</h2></a>
       </div>
-   
+
+      <div class="right item">
+
+      {% if user.is_authenticated %}
+        <a id="profile_icon" class="ui  blue button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>  
+        <a class="ui  blue   button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
+        {% else %} 
+        <!-- Modals-->
+        <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui  blue   button">
+        <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui  blue   button">
+        <!-- End Modals-->
+
+        {% endif %}
+        <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
+      </div>
+      </div>
+  </div>
+</div>
+
+<div class="content">
       {% block content %}
       {% endblock %}
-
-</nav>
-
-
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 </body>
