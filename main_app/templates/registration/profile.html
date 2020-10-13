@@ -4,10 +4,11 @@
 
 
 
-<div class="ui two column divided grid">
+
+<div class="ui two divided column center aligned page grid">
     <div class="four column row">
       <div id="profile_info" class="column"> 
-        <div style="max-width: 300px; margin: 3em 7em;" class="ui card">
+        <div style="min-width: 20em; margin: 3em 5em;" class="ui card">
             <div class="image">
               <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
             </div>
@@ -32,23 +33,28 @@
         
           </div>
       
-      <div id="ind_posts" class=" centered column"> 
+      <div id="ind_posts" class="centered column" style="min-width: 20em;"> 
            <!-- POSTS -->
-           <div id="ind_posts" class="column" style="margin: 3em 0em 0em .5em;"> 
-             <h1>{{profile.name}}'s Post</h1>
-          
+           <div id="ind_posts" class="column" style="margin: 3em 0em 0em 3em;min-width: 30em;"> 
+            <div style="margin: 3em 0em 0em 7em;"class="centered column">
+             <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{profile.name}}'s Post</h1>
+            </div>
             
-            
-       
-
-        {% for post in posts %}
-        <p>
-          {{ post.title }}
-          {{ post.author }}
-          {{ post.body }}
-        </p>
+            {% for post in posts %}
+            <div style="word-wrap: break-word; min-width: 30em;" class="ui cards">
+              <div style="margin: 3em 0em 0em 3em;min-width: 30em;" class="card">
+                <div class="content">
+                  
+                  <div class="header">{{ post.title }}</div>
+                  <div class="meta">{{ post.author }}</div>
+                  <div class="description">
+                    {{ post.body }}
+                  </div>
+                </div>
+              </div>
+              </div>
           {% if posts == 0 %}
-    
+        </div>
             <p>This user has not authored any posts</p> 
             {% endif %}
      {% endfor %}
@@ -63,7 +69,7 @@
 
 
 
-<div style="max-width: 600px;" id="edit_form" class="ui modal">
+<div style="max-width: 600px;" id="edit_form_profile" class="ui modal">
     <i class="close icon"></i>
     <div class="header">
       Edit Profile
@@ -101,7 +107,7 @@
    
   
     function edit_profile_form(){
-      $('#edit_form').modal('show');
+      $('#edit_form_profile').modal('show');
     }
    
     function delete_modal(){
@@ -114,6 +120,6 @@
 
   </script>
 
-
-
 {% endblock %}
+
+

@@ -1,4 +1,8 @@
-
+a{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    color: #2e6e65;
+}
 
 .vertical.fotorama {
     
@@ -62,10 +66,12 @@ margin: .5em;
     flex-direction: column-reverse;
     font-size: medium;
     color: #2e6e65;
+    
 }
 
 #way_icon{
     font-size: 3em;
+ 
 }
 
 /* li:first-child{
@@ -75,3 +81,17 @@ margin: .5em;
 .errorlist{
     color: crimson;
 }
+
+.large.header {
+    font-family: 'Raleway', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+}
+ .info{
+    font-family: 'Raleway', sans-serif;
+    line-height: 2em;
+ }
+
+ .way_icons{
+     margin: 2em 2em 1em 3em ;
+ }
