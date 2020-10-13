@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="ui two column divided grid">
+<div class="ui two divided column center aligned page grid">
     <div class="four column row">
       <div id="all_cities" class="column"> 
             {% for city in cities %}
@@ -21,37 +21,61 @@
           </div>
       
       <div id="all_posts" class=" centered column"> 
-           <!-- POSTS -->
-           <div id="all_cities" class="column"> 
-           <ul>
-            {% for city in cities %}
-            {% if city == currentCity %}
-                <h1>{{city.name}}</h1>
+           <!-- POSTS and currenty city -->
+
+           {% for city in cities %}
+           {% if city == currentCity %}
+           <div class="column">
+            <div class="ui fluid card">
+              <div class="image">
                 <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                      <img class="rounded large ui image" src="{{ city.image }}">
-                </a></p>
-                {% endif %}
-                {% endfor %} 
-            </ul>
-        <h1>POSTS</h1>
-       
-          <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui small orange rounded button" />
-       
-       <ul style="list-style: none;">
-        {% for post in posts %}
-            <li>
-               <h2><p><a href="{% url 'post_detail' currentCity.id post.id %}">{{ post.title }}</a></h2> 
-                  <div  class="post">
-                {{ post.title }} <br>
-                {{ post.author }} <br>
-                {{ post.body }}
-              </li>
-            </p>
-    
-            
+                  <img class="rounded large ui image" src="{{ city.image }}">
+            </a></p>
+              </div>
+              <div class="content">
+                <h1>{{city.name}}</h1>
+              </div>
+            </div>
+          </div>
+          {% endif %}
           {% endfor %} 
+           
+      
+        
+       
+          <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui basic primary rounded button" />
+       
+          
+            <!-- POSTS -->
+
+            
+            <div id="ind_posts_cities" class=" centered column" style="margin: 3em 0em 0em 3em;min-width: 30em;"> 
+             <div style="margin: 3em 0em 0em 7em;"class="centered column">
+              <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">Posts</h1>
+             </div>
+             <ul style="list-style: none;">
+             {% for post in posts %}
+             <div style="word-wrap: break-word; min-width: 30em;" class="ui cards">
+               <div style="margin: 3em 0em 0em 3em;min-width: 30em;" class="card">
+                 <div class="content">
+                   
+                   <div class="header">{{ post.title }}</div>
+                   <div class="meta">{{ post.author }}</div>
+                   <div class="description">
+                     {{ post.body }}
+                   </div>
+                 </div>
+               </div>
+               </div>
+     
+      {% endfor %}
+         </div>
+
+
+      
+      
         </ul>
-        </div>
+       
         </div>
         </div>
 
