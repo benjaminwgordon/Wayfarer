@@ -15,28 +15,32 @@
     <!-- Fotorama from CDNJS, 19 KB -->
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <!-- For Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,500&display=swap" rel="stylesheet">
 </head>
-<body>
-
+<body style="font-family: 'Raleway', sans-serif;">
+  <div class="pusher">
 <nav id="nav">
-    <div  class="ui container">
-        <div  class="ui large secondary pointing menu">
+   
+      
+        <div class="ui secondary pointing menu">
           <!-- a class="toc item"> -->
-
+<div class="way_icons">
             <a id="way_con" href="{% url 'home' %}">Wayfarer
                 <i id="way_icon" class="angle double up icon"></i>
             </a>
-        
+          </div>
         
 
           <div class="right item">
 
             
 <!-- For login and registration -->
-
+<a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
     {% if user.is_authenticated %}
-     <a id="profile_icon" class="ui grey basic button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>
+   
 <a class="ui grey basic button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
+<a id="profile_icon" class="ui grey basic button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>
 {% else %} 
 
 
@@ -46,7 +50,7 @@
           <!-- End Modals-->
     
             {% endif %}
-            <a id="all_icon" class="ui grey basic button" href="{% url 'city_detail' 1 %}">All Cities</a>
+          
           </div>
         </div>
       </div>
@@ -55,7 +59,7 @@
       {% endblock %}
 
 </nav>
-    
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
