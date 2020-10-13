@@ -8,7 +8,7 @@
 <div class="ui two divided column center aligned page grid">
     <div class="four column row">
       <div id="profile_info" class="column"> 
-        <div style="min-width: 20em; margin: 3em 5em;" class="ui card">
+        <div style="min-width: 20em; margin: 3em 2em;" class="ui card">
             <div class="image">
               <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
             </div>
@@ -33,18 +33,18 @@
         
           </div>
       
-      <div id="ind_posts" class="centered column" style="min-width: 20em;"> 
+      <div id="ind_posts" class="centered column" style="min-width: 30em; margin: auto;"> 
            <!-- POSTS -->
-           <div id="ind_posts" class="column" style="margin: 3em 0em 0em 3em;min-width: 30em;"> 
-            <div style="margin: 3em 0em 0em 7em;"class="centered column">
-             <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{profile.name}}'s Post</h1>
-            </div>
+           <div style="margin: 3em 0em 0em 7em;"class="centered column">
+            <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{profile.name}}'s Post</h1>
+           </div>
+           <div id="ind_posts" class="column" style="overflow: scroll; overflow-x: hidden; margin: 3em 0em 0em 3em;max-height: 20em; min-width: 35em;"> 
+            
             
             {% for post in posts %}
-            <div style="word-wrap: break-word; min-width: 30em;" class="ui cards">
-              <div style="margin: 3em 0em 0em 3em;min-width: 30em;" class="card">
+            <div style="word-wrap: break-word;" class="ui cards">
+              <div style="margin: 3em 0em 0em 3em;min-width: 30em;max-width: 20em;" class="card">
                 <div class="content">
-                  
                   <div class="header">{{ post.title }}</div>
                   <div class="meta">{{ post.author }}</div>
                   <div class="description">
