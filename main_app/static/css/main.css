@@ -73,3 +73,13 @@ li:first-child{
     
   
 }
+
+.large.header {
+    font-family: 'Raleway', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+}
+ .info{
+    font-family: 'Raleway', sans-serif;
+    line-height: 2em;
+ }
