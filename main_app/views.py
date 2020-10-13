@@ -106,7 +106,7 @@ def signup(request):
             return redirect('profile')
         else:
             context = {
-                'form_errors': form.errors
+                'form_errors': form.errors.items()
             }
             return render(request, 'home.html', context)
     form = NewUserForm()
