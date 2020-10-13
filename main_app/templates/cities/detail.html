@@ -35,22 +35,26 @@
            {% for city in cities %}
            {% if city == currentCity %}
            <div style="margin: 0em 0em 0em 7em; min-width: 10em;" class="column">
-            <div class="ui card">
-              <div class="image">
-                <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                  <img class="rounded large ui image" src="{{ city.image }}">
-            </a></p>
-              </div>
-              <div class="content">
-                <h1>{{city.name}}</h1>
-              </div>
-              <div class="extra content">
-                <div class="right floated add button">
-                  <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui basic primary rounded button" />
-                </div>
-              </div>
+         
+              
+           
+          
+      
             
-            </div>
+              <div class="ui_container">
+                  
+                     <h1>{{city.name}}</h1>
+                    <h2>{{city.country}}</h2>
+                    <img class=" ui rounded large image" src="{{ city.image }}">
+              </div>
+                     
+              
+               
+                  <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui basic primary rounded button" />
+               
+              
+            
+            
           </div>
           {% endif %}
           {% endfor %} 
