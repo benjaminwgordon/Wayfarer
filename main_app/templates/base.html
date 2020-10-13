@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfarer</title>
     <link rel="stylesheet" href="{% static 'css/semantic.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
-    <!-- jQuery 1.8 or later, 33 KB -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+
     
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
     <!-- Fotorama from CDNJS, 19 KB -->
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
@@ -19,40 +21,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,500&display=swap" rel="stylesheet">
 </head>
 {% comment %} <body style="font-family: 'Raleway', sans-serif;"> {% endcomment %}
-  <div  class="ui fixed  menu">
-    <div class="ui blue container">
+<div  class="ui fixed  menu">
+  <div class="ui blue container">
 
-      <!-- a class="toc item"> -->
-      <div class="way_icons">
-        <a id="way_con" href="{% url 'home' %}"><h2>Wayfarer</h2></a>
-      </div>
+    <!-- a class="toc item"> -->
+    <div class="way_icons">
+      <a id="way_con" href="{% url 'home' %}"><h2>Wayfarer</h2></a>
+    </div>
 
-      <div class="right item">
+    <div class="right item">
 
-      {% if user.is_authenticated %}
-        <a id="profile_icon" class="ui  blue button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>  
-        <a class="ui  blue   button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
-        {% else %} 
-        <!-- Modals-->
-        <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui  blue   button">
-        <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui  blue   button">
-        <!-- End Modals-->
+    {% if user.is_authenticated %}
+      <a id="profile_icon" class="ui  blue button" href="{% url 'profile'%}"> Welcome, {{ user.username }}</a>  
+      <a class="ui  blue   button" id="login_icon" href="{% url 'logout' %}">Log Out</a>
+      {% else %} 
+      <!-- Modals-->
+      <input id="login_icon" type="button" value="Log In" onclick="login_form()" class="ui  blue   button">
+      <input id="register_icon" type="button" value="Register" onclick="register_form()" class="ui  blue   button">
+      <!-- End Modals-->
 
-        {% endif %}
-        <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
-      </div>
-      </div>
-  </div>
+      {% endif %}
+      <a id="all_icon" class="ui blue button" href="{% url 'city_detail' 1 %}">All Cities</a>
+    </div>
+    </div>
 </div>
 
 <div class="content">
       {% block content %}
       {% endblock %}
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
-</body>
-
 
 <div style="max-width: 600px; max-height: 600px;" id="login_form" class="ui modal">
   <i class="close icon"></i>
@@ -67,7 +64,6 @@
         <input type="hidden" name="next" value="{{ next }}">
       </form>
   </div>
-  
 </div>
 
 <div style="max-width: 600px;" id="register_form" class="ui modal">
@@ -91,8 +87,6 @@
   </div>
 </div>
 </body>
-</html>
-
 
 <script>
   function login_form(){
@@ -116,6 +110,17 @@
     add_post()
   {% endif %}
 
-</script>
 
+  function edit_profile_form(){
+    $('#edit_form_profile').modal('show');
+  }
+  
+  function delete_modal(){
+    $('#delete_modal').modal('show');
+  }
+  function delete_modal_cancel(){
+    $('#delete_modal').modal('hide');
+  }
+</script>
 </html>
+
