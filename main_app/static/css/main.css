@@ -58,6 +58,7 @@ margin: .5em;
     margin: .5em;
 }
 
+
 .errorlist{
     color: crimson;
 }
@@ -76,3 +77,6 @@ margin: .5em;
      margin: 2em 2em 1em 3em ;
  }
 
+a :hover{
+    color:#2b3752;
+}
