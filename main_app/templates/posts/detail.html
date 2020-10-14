@@ -1,9 +1,8 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<div  class="ui container">
-        <div style="word-wrap: break-word" class="ui card">
-         
+<div class="ui container">
+        <div style="word-wrap: break-word" class="ui card"> 
         <h3>{{post.title}}</h3>
         <p>{{post.body}}</p>
         <p>{{post.author}}</p>
@@ -19,7 +18,7 @@
 </div>
 
 <div id="delete_modal" class="ui modal">
-    <i class="close icon"></i>
+   
     <div class="header">
       Delete
     </div>
@@ -35,7 +34,7 @@
   </div>
   <div class="ui three column center aligned page grid">
   <div style="max-width: 600px;" id="edit_form" class="ui modal">
-    <i class="close icon"></i>
+    
     <div style="word-wrap: break-word" class="header">
       Edit {{post.title}}
     </div>
