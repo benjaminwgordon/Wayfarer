@@ -45,8 +45,10 @@
             <div style="word-wrap: break-word;" class="ui cards">
               <div style="margin: 3em 0em 0em 3em;min-width: 30em;max-width: 20em;" class="card">
                 <div class="content">
+                  <a href="{% url 'post_detail' post.city.id post.id %}">
                   <div class="header">{{ post.title }}</div>
                   <div class="meta">{{ post.author }}</div>
+            
                   <div class="description">
                     {{ post.body }}
                   </div>

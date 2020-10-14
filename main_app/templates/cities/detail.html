@@ -6,7 +6,7 @@
 
 
 
-<div style=" margin: auto;" class="ui two divided column center aligned page grid">
+<div style="margin: auto;" class="ui two divided column center aligned page grid">
  
     <div class="three column row">
       
@@ -71,18 +71,20 @@
              <div style="margin: 3em 0em 0em 7em;"class="centered column">
               <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{currentCity.name}}'s Posts</h1>
              </div>
-           
+          
              <ul style="list-style: none;overflow: auto; overflow-x: hidden; max-height: 25em; min-width: 40em;">
              {% for post in posts %}
           
              <div style="word-wrap: break-word; min-width: 30em;" class="ui cards">
                <div style="margin: 3em 0em 0em 1.5em;min-width: 30em;" class="card">
                  <div class="content">
-                   
+                   <a href="{% url 'post_detail' currentCity.id post.id %}">
                    <div class="header">{{ post.title }}</div>
                    <div class="meta">{{ post.author }}</div>
+                  </a>
                    <div class="description">
                      {{ post.body }}
+                    
                    </div>
                  </div>
                </div>
