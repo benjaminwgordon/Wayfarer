@@ -1,3 +1,10 @@
+body{
+    background-color: #f4f7ed;
+    padding:0em;
+    word-wrap: break-word;
+}
+
+
 a{
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
@@ -42,37 +49,12 @@ margin: .5em;
 }
 
 #all_icon{
-   margin: .5em;
- 
-}
-
-#profile_icon{
-    margin: .5em;
-}
-
-#login_icon{
-    margin: .5em;
-}
-
-#logout_icon{
-    margin: .5em;
-}
-
-.errorlist{
-    color: crimson;
-}
-
-.large.header {
-    font-family: 'Raleway', sans-serif;
-    font-style: italic;
-    font-weight: 500;
-}
- .info{
-    font-family: 'Raleway', sans-serif;
-    line-height: 2em;
+   margin: .5em;width:100%;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;
  }
 
- .way_icons{
-     margin: 2em 2em 1em 3em ;
- }
-
+.body-text{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
