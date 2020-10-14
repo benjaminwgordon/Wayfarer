@@ -5,100 +5,84 @@
 
 
 
+<div style="margin: auto;" class="ui two column page grid"">
+  <div id="all_cities" class="five wide column" style="background-color: #2b3752;max-height:90vh;overflow:scroll; overflow-x:hidden;">
+    <h1 style="text-align:center;font-family: 'Raleway', sans-serif; font-weight: 700;color:white;">Cities of The World</h1>
+      {% for city in cities %}
+      <a href="{% url 'city_detail' city.id %}">
+      {% if city == currentCity %}
+        <div class="ui two column grid" style="border: 4px solid #86ee60;margin:5px; margin-bottom: 15px;background-color:#f4f7ed;border-radius:10px;">
+      {% else %}
+        <div class="ui two column grid" style="border: 2px solid #2e6e65;margin:5px; margin-bottom: 15px;background-color:#f4f7ed;border-radius:10px;">
+      {% endif %} 
+          <div class="five wide column">
+            <img class="ui tiny image" src="{{ city.image }}">
 
-<div style=" margin: auto;" class="ui two divided column center aligned page grid">
- 
-    <div class="three column row">
-      
-      <div id="all_cities" class="column" style="overflow: auto; overflow-x: hidden;max-height: 30em; margin: 5em 2em 2em 2em;"> 
-        
-        <h1 style="font-family: 'Raleway', sans-serif; font-weight: 700;">Cities of The World</h1>
-         
-            {% for city in cities %}
-            <header style="font-size: 2em; display: flex; margin: 1em 1em .5em 2.25em;">{{city.name}}</header>
-              {% if city == currentCity %}
-                <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                 
-                      <img style="max-width: 12em;max-height: 13em; margin: auto;" class="rounded ui image" src="{{ city.image }}">
-                </a></p>
-              {% else %}
-                <p class="orange"><a href="{% url 'city_detail' city.id %}">
-                      <img style="max-width: 12em;max-height: 13em; margin: auto;" class="rounded ui image" src="{{ city.image }}">
-                </a></p>
-              {% endif %}
-          {% endfor %} 
           </div>
-        
-      <div id="all_posts" class=" centered column" style="margin: 3em 0em 0em 3em;min-width: 35em;"> 
-           <!-- POSTS and currenty city -->
-
-           {% for city in cities %}
-           {% if city == currentCity %}
-           <div style="margin: 0em 0em 0em 7em; min-width: 10em;" class="column">
-         
-              
-           
-          
-      
-            
-              <div class="ui_container">
-                  
-                     <h1>{{city.name}}</h1>
-                    <h2>{{city.country}}</h2>
-                    <img class=" ui rounded large image" src="{{ city.image }}">
-              </div>
-                     
-              
-               
-                  <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui basic primary rounded button" />
-               
-              
-            
-            
+          <div class="middle aligned ten wide column">
+            <h2>{{city.name}}</h2>
           </div>
-          {% endif %}
-          {% endfor %} 
-           
-      
-       
-         
-       
-          
-            <!-- POSTS -->
+        </div>
+      </a>
+    {% endfor %} 
+  </div>
 
-            
-            <div id="ind_posts_cities" class=" centered column" style="margin: 3em 0em 0em 3em;min-width: 30em;"> 
-             <div style="margin: 3em 0em 0em 7em;"class="centered column">
-              <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{currentCity.name}}'s Posts</h1>
-             </div>
-           
-             <ul style="list-style: none;overflow: auto; overflow-x: hidden; max-height: 25em; min-width: 40em;">
-             {% for post in posts %}
-          
-             <div style="word-wrap: break-word; min-width: 30em;" class="ui cards">
-               <div style="margin: 3em 0em 0em 1.5em;min-width: 30em;" class="card">
-                 <div class="content">
-                   
-                   <div class="header">{{ post.title }}</div>
-                   <div class="meta">{{ post.author }}</div>
-                   <div class="description">
-                     {{ post.body }}
-                   </div>
-                 </div>
-               </div>
-               </div>
-     
-      {% endfor %}
         
-
-      
-      
-        </ul>
-       
-        </div>
-        </div>
-
+  <div id="all_posts" class="ten wide column" style="border: solid #2e6e65; margin-left: 5px;;padding:20px;max-height:90vh;overflow:scroll; overflow-x:hidden;">
+    <!-- POSTS and currenty city -->
+    {% for city in cities %}
+    {% if city == currentCity %}
+    <div class="column">
+    <div class="ui two column grid">
+      <div class="column" style="padding:8%;">
+        <h2 style="font-size: 2.5em; "> {{city.name}}</h2>
+        <h3 style="margin-top:-1em;margin-left:0.75em">{{city.country}}</h3>
       </div>
+      <div class="right aligned column">
+        <img class="ui rounded medium image" src="{{ city.image }}">
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %} 
+          
+  <div class="ui two column grid">
+    <div class="column">
+      <h1 style="margin-left:0.25em;font-family: 'Raleway', sans-serif; font-weight: 700;font-size:2.75em">Posts</h1>
+    </div>
+    <div class="middle aligned right aligned column">
+      <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui rounded button" style="background-color:#86ee60;"/>
+    </div>
+  </div>
+          
+  <!-- POSTS -->
+
+
+            
+  <div class="ui items">
+    {% for post in posts %}
+    <div class="item" style="overflow-x:hidden;border:2px solid #2b3752; border-radius: 10px;margin-top:10px;padding: 15px;">
+      <div class="ui tiny image">
+        <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
+      </div>
+      <div class="content">
+        <a href="{% url 'post_detail' post.city.id post.id%}">
+        <span class="header" style="width:100%;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{ post.title }}</span>
+        </a>
+        <div class="meta">
+          <span>{{post.author}}</span>
+        </div>
+        <div class="description">
+          <p class="body-text">{{post.body}}</p>
+        </div>
+        <div class="extra">
+          {{post.created_at}}
+       </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>       
+
 <div id="add_post" class="ui modal">
   <i class="close icon"></i>
   <div class="header">
@@ -113,5 +97,5 @@
     </form>
   </div>
 </div>
-
+</div>
 {% endblock%}
