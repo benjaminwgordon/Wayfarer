@@ -1,65 +1,65 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<div class="ui container">
-        <div style="word-wrap: break-word" class="ui card"> 
-        <h3>{{post.title}}</h3>
-        <p>{{post.body}}</p>
-        <p>{{post.author}}</p>
-        <p>Posted: {{post.created_at}}</p></a>
-
-        {% if is_owner %}
-          <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_profile_form()" class="ui grey basic button">
-          <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
-        {% endif %}
-      
+<div class="content">
+<div class="ui items">
+    <div class="item" style="overflow-x:hidden;border:2px solid #2b3752; border-radius: 10px;margin-top:10px;padding: 15px;width:50%; margin:auto;justify-content: space-between;">
+      <div class="ui medium image">
+        <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
+      </div>
+      <div class="content">
+        <span class="header" style="width:100%;">{{ post.title }}</span>
+        <div class="meta">
+          <span>{{post.author}}</span>
+        </div>
+        <div class="description">
+          <p class="">{{post.body}}</p>
+        </div>
+        <div class="extra">
+          <p>{{post.created_at}}</p>
+       </div>
+      </div>
     </div>
-    </form>
+  </div>      
+  <div class="ui centered center aligned two column grid" style="margin:auto;">
+    {% if is_owner %}
+    <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_profile_form()" class="ui grey basic button">
+    <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
+    {% endif %}
+  </div>
+</div>
+<div id="delete_modal" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Delete
+  </div>
+  <div style="word-wrap: break-word" class="content">
+      Are you sure you want to delete {{post.title}} ?
+      
+  </div>
+  <div class="actions">
+    <div class="ui button">
+        <a href="{% url 'post_delete' city.id post.id %}">Yes</a>
+    </div>
+  </div>
 </div>
 
-<div id="delete_modal" class="ui modal">
-   
-    <div class="header">
-      Delete
-    </div>
-    <div style="word-wrap: break-word" class="content">
-        Are you sure you want to delete {{post.title}} ?
-        
-    </div>
-    <div class="actions">
-      <div class="ui button">
-          <a href="{% url 'post_delete' city.id post.id %}">Yes</a>
+<div id="edit_form_post" class="ui modal">
+  <div class="ui three column center aligned page grid">
+    <div style="max-width: 600px;" id="edit_form" class="ui modal">
+      <i class="close icon"></i>
+      <div style="word-wrap: break-word" class="header">
+        Edit {{post.title}}
+      </div>
+      <div style="max-width:400px;margin:auto" class="content">
+        <form action="{% url 'post_edit' city.id post.id%}" method="POST" class="ui form">
+          {% csrf_token %}
+          {{ post_form.as_p }}
+          <input type="submit" class="ui button" value="Update Post" />
+        </form>
       </div>
     </div>
   </div>
-  <div class="ui three column center aligned page grid">
-  <div style="max-width: 600px;" id="edit_form" class="ui modal">
-    
-    <div style="word-wrap: break-word" class="header">
-      Edit {{post.title}}
-    </div>
-    <div style="max-width:400px;margin:auto" class="content">
-     
- <form action="{% url 'post_edit' city.id post.id%}" method="POST" class="ui form">
-        {% csrf_token %}
-        {{ post_form.as_p }}
-        <input type="submit" class="ui button" value="Update Post" />
-    </form>
 </div>
-    </div>
-
-  </div>
-
- 
-
-  <script>
-    function delete_modal(){
-      $('#delete_modal').modal('show');
-    }
-   
-    function edit_profile_form(){
-      $('#edit_form').modal('show');
-    }
-  </script>
 {% endblock %}
 
