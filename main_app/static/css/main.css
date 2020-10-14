@@ -1,6 +1,7 @@
 body{
     background-color: #f4f7ed;
     padding:0em;
+    overflow:hidden;
 }
 
 
@@ -73,4 +74,11 @@ div.ui.blue{
 
 .ui.green.button:hover{
     color: #1e4640;
+}
+
+.errorlist{
+    list-style: none;
+    color: crimson;
+    text-align:center;
+    padding:0;
 }

@@ -4,12 +4,12 @@
 
 
 
-
-<div class="ui two divided column center aligned page grid">
-    <div class="four column row">
+<div class="content">
+<div class="ui two column page grid">
+    <div class="two column row">
       <div id="profile_info" class="column"> 
         <div style="min-width: 20em; margin: 3em 2em;" class="ui card">
-            <div class="image">
+            <div class="image" style="background-color: #2b3752">
               <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
             </div>
             <div class="content">
@@ -31,33 +31,37 @@
             </div>
           </div>
         
-          </div>
-      
-      <div id="ind_posts" class="centered column" style="min-width: 30em; margin: auto;"> 
-           <!-- POSTS -->
-           <div style="margin: 3em 0em 0em 7em;"class="centered column">
-            <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{profile.name}}'s Post</h1>
-           </div>
-           <div id="ind_posts" class="column" style="overflow: scroll; overflow-x: hidden; margin: 3em 0em 0em 3em;max-height: 20em; min-width: 35em;"> 
-            
-            
-            {% for post in posts %}
-            <div style="word-wrap: break-word;" class="ui cards">
-              <div style="margin: 3em 0em 0em 3em;min-width: 30em;max-width: 20em;" class="card">
-                <div class="content">
-                  <div class="header">{{ post.title }}</div>
-                  <div class="meta">{{ post.author }}</div>
-                  <div class="description">
-                    {{ post.body }}
-                  </div>
-                </div>
-              </div>
-              </div>
-          {% if posts == 0 %}
         </div>
-            <p>This user has not authored any posts</p> 
-            {% endif %}
-     {% endfor %}
+      
+      <div id="ind_posts" class="left aligned centered column" style="margin-top: 30px;"> 
+        <!-- POSTS -->
+        <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{profile.name}}'s Posts</h1>
+        <div id="ind_posts" class="column" style="overflow: scroll; overflow-x: hidden; max-height: 70vh; min-width: 35em;padding:20px;"> 
+          <div class="ui items">
+          {% for post in posts %}
+          <div class="item" style="overflow-x:hidden;border:2px solid #2b3752; border-radius: 10px;margin-top:10px;padding: 15px;">
+            <div class="ui tiny image">
+              <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
+            </div>
+            <div class="content">
+              <a href="{% url 'post_detail' post.city.id post.id%}">
+              <span class="header" style="width:100%;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{post.city}}: {{ post.title }}</span>
+              </a>
+              <div class="meta">
+                <span>{{post.author}}</span>
+              </div>
+              <div class="description">
+                <p class="body-text">{{post.body}}</p>
+              </div>
+              <div class="extra">
+                {{post.created_at}}
+            </div>
+            </div>
+          </div>
+              {% if posts == 0 %}
+                  <p>This user has not authored any posts</p> 
+                {% endif %}
+          {% endfor %}
         </div>
 
       
@@ -101,6 +105,8 @@
           <a href="{% url 'profile_delete' %}">Yes</a>
       </div>
     </div>
+  </div>
+
   </div>
 {% endblock %}
 

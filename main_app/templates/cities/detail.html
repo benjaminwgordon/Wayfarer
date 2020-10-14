@@ -6,7 +6,7 @@
 
 
 <div style="margin: auto;" class="ui two column page grid"">
-  <div id="all_cities" class="five wide column" style="background-color: #2b3752; overflow-x:hidden; overflow-y:scroll;min-height:100vh;">
+  <div id="all_cities" class="five wide column" style="background-color: #2b3752;max-height:90vh;overflow:scroll; overflow-x:hidden;">
     <h1 style="text-align:center;font-family: 'Raleway', sans-serif; font-weight: 700;color:white;">Cities of The World</h1>
       {% for city in cities %}
       <a href="{% url 'city_detail' city.id %}">
@@ -27,7 +27,7 @@
   </div>
 
         
-  <div id="all_posts" class="ten wide column" style="border: solid #2e6e65; margin-left: 5px; overflow-x:hidden; overflow-y:scroll;padding:20px;">
+  <div id="all_posts" class="ten wide column" style="border: solid #2e6e65; margin-left: 5px;;padding:20px;max-height:90vh;overflow:scroll; overflow-x:hidden;">
     <!-- POSTS and currenty city -->
     {% for city in cities %}
     {% if city == currentCity %}
@@ -62,7 +62,7 @@
             
   <div class="ui items">
     {% for post in posts %}
-    <div class="item" style="border:2px solid #2b3752; border-radius: 10px;margin-top:10px;padding: 15px;">
+    <div class="item" style="overflow-x:hidden;border:2px solid #2b3752; border-radius: 10px;margin-top:10px;padding: 15px;">
       <div class="ui tiny image">
         <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
       </div>
