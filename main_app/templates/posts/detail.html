@@ -23,7 +23,7 @@
   </div>      
   <div class="ui centered center aligned two column grid" style="margin:auto;">
     {% if is_owner %}
-    <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_profile_form()" class="ui grey basic button">
+    <input id="edit_form_button" type="ui button" value="Edit" onclick="edit_form_post()" class="ui grey basic button">
     <input id="confirm-delete" type="ui button" value="Delete" onclick="delete_modal()" class="ui grey basic button">
     {% endif %}
   </div>
@@ -45,21 +45,19 @@
 </div>
 
 <div id="edit_form_post" class="ui modal">
-  <div class="ui three column center aligned page grid">
-    <div style="max-width: 600px;" id="edit_form" class="ui modal">
-      <i class="close icon"></i>
-      <div style="word-wrap: break-word" class="header">
+  <i class="close icon"></i>
+    <div class="header">
         Edit {{post.title}}
-      </div>
-      <div style="max-width:400px;margin:auto" class="content">
-        <form action="{% url 'post_edit' city.id post.id%}" method="POST" class="ui form">
+    </div>
+    <div style="word-wrap: break-word" class="content">
+        <form action="{% url 'post_edit' city.id post.id %}" method="POST" class="ui form">
           {% csrf_token %}
           {{ post_form.as_p }}
           <input type="submit" class="ui button" value="Update Post" />
         </form>
-      </div>
     </div>
-  </div>
 </div>
+
+
 {% endblock %}
 
