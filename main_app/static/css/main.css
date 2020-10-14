@@ -1,7 +1,6 @@
 body{
     background-color: #f4f7ed;
     padding:0em;
-    word-wrap: break-word;
 }
 
 
@@ -11,6 +10,8 @@ a{
     color: #2e6e65;
 }
 
+
+
 .vertical.fotorama {
     
     padding: 1em 0em;
@@ -18,9 +19,11 @@ a{
     justify-content: center;
   }
 
-  .content{
-      margin-top: 85px;
-  }
+.content{
+    margin-top: 85px;
+    margin-left:auto;
+    margin-right:auto;
+}
 .rounded.image{
     height: 120px;
  width: auto;
@@ -48,13 +51,26 @@ color:#2e6e65;
 margin: .5em;
 }
 
-#all_icon{
-   margin: .5em;width:100%;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;
- }
 
 .body-text{
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.ui.menu:not(.vertical) .item > .button{
+    margin: 5px;
+}
+
+div.ui.blue{
+    background-color: #2b3752;
+}
+
+.ui.green.button {
+    color: #2e6e65;
+}
+
+.ui.green.button:hover{
+    color: #1e4640;
 }
