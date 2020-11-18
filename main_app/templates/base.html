@@ -80,6 +80,26 @@
       </form>
     </div>
   </div>
+<<<<<<< HEAD
+</div>
+<div style="max-width: 600px;" id="register_form" class="ui modal">
+  <i class="close icon"></i>
+  <div class="ui centered dark header">
+    Sign Up
+  </div>
+  <div style="max-width:400px;margin:auto" class="content">
+    <form method="post" action="{% url 'signup' %}" class="ui form">
+      {% csrf_token %}
+      {% for field, error in form_errors %}
+        <h4>{{error}}</h4>
+      {% endfor %}
+      {{ register_form.as_p }}
+        <input type="submit" class="ui  blue button" value="Sign Up" style="margin: auto; display: block;">
+    </form>
+  </div>
+</div>
+=======
+>>>>>>> dev
 </body>
 <script>
   function login_form(){

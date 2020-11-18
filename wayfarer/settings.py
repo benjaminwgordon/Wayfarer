@@ -1,3 +1,11 @@
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+
 """
 Django settings for wayfarer project.
 
@@ -20,10 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'si11midmxf21*ni&3xy8j6zbnxlfdqdmjogfb%q%1!mn-w70(j'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -79,11 +87,14 @@ WSGI_APPLICATION = 'wayfarer.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wayfarer',
+        'default': env.db(),
     }
-}
+    
+    # {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'wayfarer',
+    # }
+
 
 
 # Password validation
@@ -127,3 +138,4 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/accounts/'
 
 LOGOUT_REDIRECT_URL = '/'
+
