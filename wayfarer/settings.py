@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'si11midmxf21*ni&3xy8j6zbnxlfdqdmjogfb%q%1!mn-w70(j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-54-160-18-230.compute-1.amazonaws.com']
 
 
 # Application definition
@@ -127,3 +128,7 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/accounts/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+# Configure Django App for Heroku.
+
+django_heroku.settings(locals())
