@@ -1,2 +1,1 @@
-web: python myApp.py runserver 0.0.0.0:$PORT
-
+web: gunicorn wayfarer.wsgi
