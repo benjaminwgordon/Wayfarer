@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 import django_heroku 
+from boto.s3.connection import S3Connection
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,13 +24,12 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
-DB_SECRET_KEY = os.environ['DB_SECRET_KEY']
+DB_SECRET_KEY = S3Connection(os.environ['DB_SECRET_KEY'], os.environ['DB_SECRET_VALUE'])
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['ec2-54-160-18-230.compute-1.amazonaws.com']
-
 
 # Application definition
 
