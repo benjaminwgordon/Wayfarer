@@ -23,7 +23,6 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
 DB_SECRET_KEY = S3Connection(os.environ['DB_SECRET_KEY'], os.environ['DB_SECRET_VALUE'])
 
 # SECURITY WARNING: don't run with debug turned on in production!
