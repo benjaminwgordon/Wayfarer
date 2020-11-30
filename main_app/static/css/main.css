@@ -1,0 +1,84 @@
+body{
+    background-color: #f4f7ed;
+    padding:0em;
+    overflow:hidden;
+}
+
+
+a{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    color: #2e6e65;
+}
+
+
+
+.vertical.fotorama {
+    
+    padding: 1em 0em;
+    display: flex;
+    justify-content: center;
+  }
+
+.content{
+    margin-top: 85px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.rounded.image{
+    height: 120px;
+ width: auto;
+}
+.four.column{
+    padding: 1em 0em;
+    margin: 0em 0em 0em 5em;
+    
+}
+.three.grid{
+    display: flex;
+    justify-content: left;
+    margin: 3em;
+}
+
+.large.pointing{
+    padding: 1em 0em;
+    display: flex;
+    justify-content: center;
+}
+
+#login{
+
+color:#2e6e65;
+margin: .5em;
+}
+
+
+.body-text{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.ui.menu:not(.vertical) .item > .button{
+    margin: 5px;
+}
+
+div.ui.blue{
+    background-color: #2b3752;
+}
+
+.ui.green.button {
+    color: #2e6e65;
+}
+
+.ui.green.button:hover{
+    color: #1e4640;
+}
+
+.errorlist{
+    list-style: none;
+    color: crimson;
+    text-align:center;
+    padding:0;
+}

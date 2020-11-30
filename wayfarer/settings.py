@@ -22,12 +22,13 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'si11midmxf21*ni&3xy8j6zbnxlfdqdmjogfb%q%1!mn-w70(j'
+SECRET_KEY = os.environ['SECRET_KEY']
+DB_SECRET_KEY = os.environ['DB_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-54-160-18-230.compute-1.amazonaws.com']
 
 
 # Application definition
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -65,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main_app.context_processors.auth_context_processor'
+
             ],
         },
     },
@@ -82,7 +87,7 @@ DATABASES = {
         'NAME': 'wayfarer',
         'HOST': 'wayfarer.cj6uo8xmhyvx.us-east-2.rds.amazonaws.com',
         'USER': 'postgres',
-        'PASSWORD': 'Aglareon1995',
+        'PASSWORD': DB_SECRET_KEY,
         'PORT': 5432
 
     }
@@ -126,4 +131,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 django_heroku.settings(locals())
+=======
+
+LOGIN_REDIRECT_URL = '/accounts/'
+
+LOGOUT_REDIRECT_URL = '/'
+
+# Configure Django App for Heroku.
+
+django_heroku.settings(locals())
+>>>>>>> dev

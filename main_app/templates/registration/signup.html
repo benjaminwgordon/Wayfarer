@@ -1,0 +1,35 @@
+{% extends 'base.html'%} 
+{%block content%} 
+
+<form method="post" action="{% url 'signup' %}">
+  {% csrf_token %}
+  <p>Email<input type="text" name="email"></p>
+  <p>Confirm Email:<input type="text" name="confirm_email"></p>
+  {{ form.as_p }}
+  <input id="edit_icon" type="submit" value="signup" onclick="edit_profile_form()" class="ui grey basic button ">
+</form>
+
+
+
+
+<div style="max-width: 600px;" id="edit_form" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Edit Profile
+  </div>
+  <div style="max-width:400px;margin:auto" class="content">
+   
+<form action="{% url 'profile_edit'%}" method="post" class="ui form">
+  {% csrf_token %}
+  {{ profile_form.as_p }}
+  <input type="submit" value="Update Profile">
+</form>
+
+  </div>
+ 
+</div>
+
+
+
+
+{% endblock %}

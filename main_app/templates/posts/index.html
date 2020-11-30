@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="ui two column divided grid">
+  <div class="four column row">
+    <div id="all_cities" class="column">  <!-- CITIES -->
+
+      <h1>CITIES</h1>
+      {% for city in city %}
+          
+              <p><a href="{% url 'city_detail' city.id %}">
+                  <img class="rounded ui image" src="{{ city.image }}">
+              </a> 
+          </p>
+            
+  
+        {% endfor %} </div>
+  
+  </div>
+</div>
+         
+{% endblock%}

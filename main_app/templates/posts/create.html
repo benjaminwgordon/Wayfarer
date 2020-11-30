@@ -1,0 +1,24 @@
+
+{% extends 'base.html'%}
+{% block content %}
+
+
+
+<div  class="ui two column divided grid">
+    <form action="{% url 'post_index' %}" method="POST">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <input type="submit" class="ui rounded grey button" value="Add Post" />
+    </form>
+</div>
+
+
+{% endblock %}
+
+
+{% comment %} 
+    <form action="{% url 'post_index' %}" method="POST">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <input type="submit" class="ui button" value="Add Post" /> 
+{% endcomment %}

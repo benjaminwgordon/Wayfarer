@@ -1,0 +1,113 @@
+
+{% extends 'base.html'%}
+{% block content %}
+
+
+
+<div class="content">
+<div class="ui two column page grid">
+    <div class="two column row">
+      <div id="profile_info" class="column"> 
+        <div style="min-width: 20em; margin: 3em 2em;" class="ui card">
+            <div class="image" style="background-color: #2b3752">
+              <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
+            </div>
+            <div class="content">
+              <a class="header"> Welcome, {{profile.name}}</a>
+              <div class="meta">
+                <span class="date">Joined on {{profile.join_date}}</span>
+              </div>
+              <div class="city">
+                Lives in {{profile.current_city}}
+              </div>
+            </div>
+            <div class="extra content">
+              <a>
+                
+                <input id="edit_icon" type=" ui button" value="Edit Profile" onclick="edit_profile_form()" class="ui grey basic button ">
+                
+                <input id="confirm_delete" type="ui button" value="Delete Profile" onclick="delete_modal()" class="ui grey basic button">
+              </a>
+            </div>
+          </div>
+        
+        </div>
+      
+      <div id="ind_posts" class="left aligned centered column" style="margin-top: 30px;"> 
+        <!-- POSTS -->
+        <h1 style="word-wrap: break-word;font-family: 'Raleway', sans-serif; font-weight: 700;">{{profile.name}}'s Posts</h1>
+        <div id="ind_posts" class="column" style="overflow: auto; overflow-x: hidden; max-height: 70vh; min-width: 35em;padding:20px;"> 
+          <div class="ui items">
+          {% for post in posts %}
+          <div class="item" style="overflow-x:hidden;border:2px solid #2b3752; border-radius: 10px;margin-top:10px;padding: 15px;">
+            <div class="ui tiny image">
+              <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
+            </div>
+            <div class="content">
+              <a href="{% url 'post_detail' post.city.id post.id%}">
+              <span class="header" style="width:100%;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{post.city}}: {{ post.title }}</span>
+              </a>
+              <div class="meta">
+                <span>{{post.author}}</span>
+              </div>
+              <div class="description">
+                <p class="body-text">{{post.body}}</p>
+              </div>
+              <div class="extra">
+                {{post.created_at}}
+            </div>
+            </div>
+          </div>
+              {% if posts == 0 %}
+                  <p>This user has not authored any posts</p> 
+                {% endif %}
+          {% endfor %}
+        </div>
+
+      
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div style="max-width: 600px;" id="edit_form_profile" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Edit Profile
+    </div>
+    <div style="max-width:400px;margin:auto" class="content">
+     
+<form action="{% url 'profile_edit'%}" method="post" class="ui form">
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    <input type="submit" class="ui button" value="Update Profile">
+</form>
+
+    </div>
+   
+  </div>
+  
+  <div id="delete_modal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Delete {{profile.name}}
+    </div>
+    <div class="content">
+        Are you sure you want to delete {{profile.name}} ?
+        
+    </div>
+    <div class="actions">
+      
+      <div class="ui button">
+          <a href="{% url 'profile_delete' %}">Yes</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+{% endblock %}
+
+

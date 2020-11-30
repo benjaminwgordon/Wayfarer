@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{%block content%} 
+
+
+<div style="max-width:400px;margin: 5em auto;" class="ui three column divided grid">
+    <div class=" ui col">
+        <h2 class="ui image header">
+            
+            <div style="color:#2e6e65;" class="content">
+                Log in to your Wayfarer Account
+            </div>
+        </h2>
+        <form method="post" action="{% url 'login' %}" class="ui form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input style="background-color:#2e6e65;" type="submit" class="ui button" value="login">
+          <input type="hidden" name="next" value="{{ next }}">
+      </form>
+    </div>
+</div>
+
+{% endblock %} 

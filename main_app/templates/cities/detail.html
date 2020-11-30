@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+<div style="margin: auto;" class="ui two column page grid"">
+  <div id="all_cities" class="five wide column" style="background-color: #2b3752;max-height:90vh;overflow:scroll; overflow-x:hidden;">
+    <h1 style="text-align:center;font-family: 'Raleway', sans-serif; font-weight: 700;color:white;">Cities of The World</h1>
+      {% for city in cities %}
+      <a href="{% url 'city_detail' city.id %}">
+      {% if city == currentCity %}
+        <div class="ui two column grid" style="border: 4px solid #86ee60;margin:5px; margin-bottom: 15px;background-color:#f4f7ed;border-radius:10px;">
+      {% else %}
+        <div class="ui two column grid" style="border: 2px solid #2e6e65;margin:5px; margin-bottom: 15px;background-color:#f4f7ed;border-radius:10px;">
+      {% endif %} 
+          <div class="five wide column">
+            <img class="ui tiny image" src="{{ city.image }}">
+
+          </div>
+          <div class="middle aligned ten wide column">
+            <h2>{{city.name}}</h2>
+          </div>
+        </div>
+      </a>
+    {% endfor %} 
+  </div>
+
+        
+  <div id="all_posts" class="ten wide column" style="border: solid #2e6e65; margin-left: 5px;;padding:20px;max-height:90vh;overflow:scroll; overflow-x:hidden;">
+    <!-- POSTS and currenty city -->
+    {% for city in cities %}
+    {% if city == currentCity %}
+    <div class="column">
+    <div class="ui two column grid">
+      <div class="column" style="padding:8%;">
+        <h2 style="font-size: 2.5em; "> {{city.name}}</h2>
+        <h3 style="margin-top:-1em;margin-left:0.75em">{{city.country}}</h3>
+      </div>
+      <div class="right aligned column">
+        <img class="ui rounded medium image" src="{{ city.image }}">
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %} 
+          
+  <div class="ui two column grid">
+    <div class="column">
+      <h1 style="margin-left:0.25em;font-family: 'Raleway', sans-serif; font-weight: 700;font-size:2.75em">Posts</h1>
+    </div>
+    <div class="middle aligned right aligned column">
+      <input id="add_icon" type="button" value="Add Post" onclick="add_post()" class="ui rounded button" style="background-color:#86ee60;"/>
+    </div>
+  </div>
+          
+  <!-- POSTS -->
+
+
+            
+  <div class="ui items">
+    {% for post in posts %}
+    <div class="item" style="overflow-x:hidden;border:2px solid #2b3752; border-radius: 10px;margin-top:10px;padding: 15px;">
+      <div class="ui tiny image">
+        <img src="https://www.flaticon.com/svg/static/icons/svg/194/194938.svg">
+      </div>
+      <div class="content">
+        <a href="{% url 'post_detail' post.city.id post.id%}">
+        <span class="header" style="width:100%;white-space: nowrap;overflow:hidden;text-overflow: ellipsis;">{{ post.title }}</span>
+        </a>
+        <div class="meta">
+          <span>{{post.author}}</span>
+        </div>
+        <div class="description">
+          <p class="body-text">{{post.body}}</p>
+        </div>
+        <div class="extra">
+          {{post.created_at}}
+       </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>       
+
+<div id="add_post" class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Add Post to {{currentCity}}
+  </div>
+  <div class="content">
+    <form class="ui form" action="{% url 'city_detail' currentCity.id %}" method="POST">
+        {% csrf_token %}
+        {{ post_create_form_errors }}
+        {{ post_form.as_p }}
+        <input type="submit" class="ui rounded grey button" value="Add Post" />
+    </form>
+  </div>
+</div>
+</div>
+{% endblock%}
