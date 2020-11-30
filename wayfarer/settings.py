@@ -131,9 +131,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
-django_heroku.settings(locals())
-=======
 
 LOGIN_REDIRECT_URL = '/accounts/'
 
@@ -142,4 +139,3 @@ LOGOUT_REDIRECT_URL = '/'
 # Configure Django App for Heroku.
 
 django_heroku.settings(locals())
->>>>>>> dev
