@@ -78,6 +78,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'wayfarer',
+        'HOST': 'wayfarer.cj6uo8xmhyvx.us-east-2.rds.amazonaws.com',
+        'USER': 'postgres',
+        'PASSWORD': 'Aglareon1995',
+        'PORT': 5432
+
     }
 }
 
