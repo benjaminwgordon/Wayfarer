@@ -1,4 +1,4 @@
-# React Stock Chart
+# Wayfarer Travel
 > Travel review site for natural public spaces
 
 ## Table of contents
@@ -23,7 +23,6 @@ This is a travel review website for natural public spaces built with Django and 
     *View all your reviews on your user account
 
 ## Contact
-Created by:
     *[Ben Gordon](https://benjaminwgordon.github.io/portfolio/)
     *[Keyahna Blanford](https://github.com/keyahnajanae)
     *[Dylan Wannamaker](https://github.com/dwannamaker)
