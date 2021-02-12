@@ -18,11 +18,11 @@ This is a travel review website for natural public spaces built with Django and 
     * PostgreSQL
 
 ## Features
-    *User account registration
-    *Post and Read reviews on landmarks across various cities
-    *View all your reviews on your user account
+    * User account registration
+    * Post and Read reviews on landmarks across various cities
+    * View all your reviews on your user account
 
 ## Contact
-    *[Ben Gordon](https://benjaminwgordon.github.io/portfolio/)
-    *[Keyahna Blanford](https://github.com/keyahnajanae)
-    *[Dylan Wannamaker](https://github.com/dwannamaker)
+*[Ben Gordon](https://benjaminwgordon.github.io/portfolio/)
+*[Keyahna Blanford](https://github.com/keyahnajanae)
+*[Dylan Wannamaker](https://github.com/dwannamaker)
