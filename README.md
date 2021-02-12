@@ -1,4 +1,4 @@
-## [Live Link](https://wayfarer-group.herokuapp.com/) 
+### [View site live here](https://wayfarer-group.herokuapp.com/) 
 
 # Wayfarer Travel
 > Travel review site for natural public spaces
