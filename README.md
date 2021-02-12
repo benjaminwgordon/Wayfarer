@@ -1,7 +1,7 @@
-### View site live: [Wayfarer](https://wayfarer-group.herokuapp.com/) 
-
 # Wayfarer Travel
 > Travel review site for natural public spaces
+
+### View site live: [Wayfarer](https://wayfarer-group.herokuapp.com/) 
 
 ## Table of contents
 * [General info](#general-info)
