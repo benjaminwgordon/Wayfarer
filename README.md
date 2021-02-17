@@ -16,13 +16,13 @@ This is a travel review website for natural public spaces built with Django and 
 ![Example screenshot](./wayfarer.png)
 
 ## Technologies
-    - Django
-    - PostgreSQL
+- Django
+- PostgreSQL
 
 ## Features
-    - User account registration
-    - Post and Read reviews on landmarks across various cities
-    - View all your reviews on your user account
+- User account registration
+- Post and Read reviews on landmarks across various cities
+- View all your reviews on your user account
 
 ## Contact
 - [Ben Gordon](https://benjaminwgordon.github.io/portfolio/)
