@@ -1,7 +1,7 @@
 # Wayfarer Travel
 > Travel review site for natural public spaces
 
-### View site live: [Wayfarer](https://wayfarer-group.herokuapp.com/)  (Running on a Dyno, make take up to a minute to wake from hibernation)
+### View site live: [Wayfarer](https://wayfarer-group.herokuapp.com/)  (Running on a Dyno, may take up to a minute to wake from hibernation)
 
 ## Table of contents
 * [General info](#general-info)
